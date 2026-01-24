@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "created": "2026-01-24T15:37:39.166415",
+    "total_documents": 10,
+    "languages": [
+      "English",
+      "Hindi"
+    ],
+    "document_types": [
+      "Act",
+      "Contract"
+    ]
+  },
+  "by_type": {
+    "Act": {
+      "english": [
+        {
+          "title": "The Contempt of Courts Act, 1971",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "english",
+          "file": "The_Contempt_of_Courts_Act_1971_0.json",
+          "has_bilingual": true
+        },
+        {
+          "title": "The Court Fees Act, 1870",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "english",
+          "file": "The_Court_Fees_Act_1870_1.json",
+          "has_bilingual": true
+        },
+        {
+          "title": "The Legal Services Authorities Act, 1987",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "english",
+          "file": "The_Legal_Services_Authorities_Act_1987_2.json",
+          "has_bilingual": true
+        },
+        {
+          "title": "The Family Courts Act, 1984",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "english",
+          "file": "The_Family_Courts_Act_1984_3.json",
+          "has_bilingual": true
+        }
+      ],
+      "hindi": [
+        {
+          "title": "The Contempt of Courts Act, 1971",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "hindi",
+          "file": "The_Contempt_of_Courts_Act_1971_0.json",
+          "has_bilingual": true
+        },
+        {
+          "title": "The Court Fees Act, 1870",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "hindi",
+          "file": "The_Court_Fees_Act_1870_1.json",
+          "has_bilingual": true
+        },
+        {
+          "title": "The Legal Services Authorities Act, 1987",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "hindi",
+          "file": "The_Legal_Services_Authorities_Act_1987_2.json",
+          "has_bilingual": true
+        },
+        {
+          "title": "The Family Courts Act, 1984",
+          "type": "Act",
+          "source": "Department of Justice",
+          "language": "hindi",
+          "file": "The_Family_Courts_Act_1984_3.json",
+          "has_bilingual": true
+        }
+      ]
+    },
+    "Contract": {
+      "english": [
+        {
+          "title": "Sample Contract Agreement",
+          "type": "Contract",
+          "source": "Legal Database",
+          "language": "english",
+          "file": "Sample_Contract_Agreement_4.json",
+          "has_bilingual": true
+        }
+      ],
+      "hindi": [
+        {
+          "title": "Sample Contract Agreement",
+          "type": "Contract",
+          "source": "Legal Database",
+          "language": "hindi",
+          "file": "Sample_Contract_Agreement_4.json",
+          "has_bilingual": true
+        }
+      ]
+    }
+  },
+  "by_language": {
+    "english": [
+      {
+        "title": "The Contempt of Courts Act, 1971",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "english",
+        "file": "The_Contempt_of_Courts_Act_1971_0.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "The Court Fees Act, 1870",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "english",
+        "file": "The_Court_Fees_Act_1870_1.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "The Legal Services Authorities Act, 1987",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "english",
+        "file": "The_Legal_Services_Authorities_Act_1987_2.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "The Family Courts Act, 1984",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "english",
+        "file": "The_Family_Courts_Act_1984_3.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "Sample Contract Agreement",
+        "type": "Contract",
+        "source": "Legal Database",
+        "language": "english",
+        "file": "Sample_Contract_Agreement_4.json",
+        "has_bilingual": true
+      }
+    ],
+    "hindi": [
+      {
+        "title": "The Contempt of Courts Act, 1971",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "hindi",
+        "file": "The_Contempt_of_Courts_Act_1971_0.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "The Court Fees Act, 1870",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "hindi",
+        "file": "The_Court_Fees_Act_1870_1.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "The Legal Services Authorities Act, 1987",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "hindi",
+        "file": "The_Legal_Services_Authorities_Act_1987_2.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "The Family Courts Act, 1984",
+        "type": "Act",
+        "source": "Department of Justice",
+        "language": "hindi",
+        "file": "The_Family_Courts_Act_1984_3.json",
+        "has_bilingual": true
+      },
+      {
+        "title": "Sample Contract Agreement",
+        "type": "Contract",
+        "source": "Legal Database",
+        "language": "hindi",
+        "file": "Sample_Contract_Agreement_4.json",
+        "has_bilingual": true
+      }
+    ]
+  },
+  "terminology_index": {
+    "english": {
+      "court_related": {
+        "court": 3
+      },
+      "temporal": {
+        "Whereas": 2
+      },
+      "legal_concepts": {
+        "jurisdiction": 1,
+        "Agreement": 1
+      },
+      "parties": {
+        "Party": 3
+      }
+    },
+    "hindi": {
+      "court_related": [
+        "न्यायालय",
+        "न्याय",
+        "न्यायालय",
+        "न्याय",
+        "न्यायालय",
+        "न्याय"
+      ],
+      "legal_concepts": [
+        "क्षेत्राधिकार",
+        "समझौता"
+      ],
+      "parties": [
+        "पक्ष"
+      ]
+    }
+  }
+}

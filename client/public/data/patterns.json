@@ -1,0 +1,83 @@
+{
+  "english": {
+    "formal_language_markers": [],
+    "sentence_structure": {},
+    "vocabulary_complexity": {},
+    "stylistic_elements": {},
+    "document_structure": {},
+    "analysis_results": {
+      "formal_markers": {
+        "whereas": 2,
+        "hereby": 0,
+        "hereinafter": 0,
+        "hereunder": 0,
+        "aforesaid": 0,
+        "thereof": 0
+      },
+      "sentence_statistics": {
+        "average_length": 15.375,
+        "max_length": 23,
+        "min_length": 10
+      },
+      "vocabulary_characteristics": {
+        "average_word_length": 4.617886178861789,
+        "unique_words": 60,
+        "technical_terms": []
+      },
+      "stylistic_features": {
+        "passive_voice_usage": 2,
+        "conditional_statements": 0,
+        "numbered_sections": 0,
+        "subsections": 0,
+        "definitions": 0
+      },
+      "document_structure": {
+        "has_preamble": true,
+        "has_sections": false,
+        "has_schedules": false,
+        "has_definitions": false
+      }
+    }
+  },
+  "hindi": {
+    "formal_language_markers": [],
+    "sentence_structure": {},
+    "vocabulary_complexity": {},
+    "stylistic_elements": {},
+    "document_structure": {},
+    "analysis_results": {
+      "formal_markers": {
+        "जबकि": 2,
+        "इसके द्वारा": 0,
+        "इसके बाद": 0,
+        "इसके अंतर्गत": 0,
+        "पूर्वोक्त": 0,
+        "उपरोक्त": 0,
+        "अनुसार": 1
+      },
+      "sentence_statistics": {
+        "average_length": 30.5,
+        "max_length": 72,
+        "min_length": 12
+      },
+      "vocabulary_characteristics": {
+        "average_word_length": 4.385245901639344,
+        "unique_words": 64,
+        "technical_terms": []
+      },
+      "stylistic_features": {
+        "passive_voice_usage": 4,
+        "conditional_statements": 0,
+        "numbered_sections": 0,
+        "subsections": 0,
+        "definitions": 0
+      },
+      "document_structure": {
+        "has_preamble": true,
+        "has_sections": false,
+        "has_schedules": false,
+        "has_definitions": false
+      }
+    }
+  }
+}

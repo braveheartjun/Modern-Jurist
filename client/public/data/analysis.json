@@ -1,0 +1,146 @@
+{
+  "english": {
+    "documents": [
+      {
+        "title": "The Contempt of Courts Act, 1971",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "The Court Fees Act, 1870",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "The Legal Services Authorities Act, 1987",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "The Family Courts Act, 1984",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "Sample Contract Agreement",
+        "type": "Contract",
+        "source": "Legal Database"
+      }
+    ],
+    "terminology": {
+      "court_related": {
+        "court": 3
+      },
+      "temporal": {
+        "Whereas": 2
+      },
+      "legal_concepts": {
+        "jurisdiction": 1,
+        "Agreement": 1
+      },
+      "parties": {
+        "Party": 3
+      }
+    },
+    "structure_patterns": {
+      "has_whereas_clause": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "has_numbered_sections": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "has_subsections": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "has_definitions": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "has_schedules": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "average_sentence_length": [
+        0.17857142857142858,
+        0.18518518518518517,
+        0.19047619047619047,
+        0.17391304347826086,
+        0.20833333333333334
+      ],
+      "formal_language_indicators": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "language_characteristics": {}
+  },
+  "hindi": {
+    "documents": [
+      {
+        "title": "न्यायालय अवमान अधिनियम, 1971",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "न्यायालय फीस अधिनियम, 1870",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "विधिक सेवा प्राधिकरण अधिनियम, 1987",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "कुटुम्ब न्यायालय अधिनियम, 1984",
+        "type": "Act",
+        "source": "Department of Justice"
+      },
+      {
+        "title": "नमूना अनुबंध समझौता",
+        "type": "Contract",
+        "source": "Legal Database"
+      }
+    ],
+    "terminology": {
+      "court_related": [
+        "न्यायालय",
+        "न्याय",
+        "न्यायालय",
+        "न्याय",
+        "न्यायालय",
+        "न्याय"
+      ],
+      "legal_concepts": [
+        "क्षेत्राधिकार",
+        "समझौता"
+      ],
+      "parties": [
+        "पक्ष"
+      ]
+    },
+    "structure_patterns": {},
+    "language_characteristics": {}
+  }
+}

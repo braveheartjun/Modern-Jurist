@@ -1,0 +1,73 @@
+{
+  "english": {
+    "procedural_terms": {
+      "petition": "A formal written request to a court",
+      "appeal": "A request to a higher court to review a lower court decision",
+      "suit": "A legal action or case brought before a court",
+      "judgment": "The official decision of a court",
+      "order": "A directive issued by a court",
+      "decree": "A formal order issued by a court",
+      "writ": "A formal written command issued by a court",
+      "habeas corpus": "A legal action to challenge unlawful detention"
+    },
+    "party_terms": {
+      "petitioner": "The party who files a petition",
+      "respondent": "The party against whom a petition is filed",
+      "plaintiff": "The party who initiates a lawsuit",
+      "defendant": "The party being sued",
+      "appellant": "The party who appeals a decision",
+      "counsel": "A legal advisor or attorney"
+    },
+    "legal_concepts": {
+      "liability": "Legal responsibility for actions or omissions",
+      "negligence": "Failure to exercise reasonable care",
+      "tort": "A wrongful act causing damage or loss",
+      "contract": "A binding agreement between parties",
+      "breach": "Violation of a contract or legal duty",
+      "damages": "Compensation for loss or injury",
+      "jurisdiction": "The authority of a court to hear a case"
+    },
+    "temporal_expressions": {
+      "whereas": "Introducing the background or recitals of a document",
+      "hereinafter": "Later in this document",
+      "hereunder": "Under the provisions of this document",
+      "hereby": "By means of this document",
+      "aforesaid": "Mentioned before in this document",
+      "aforementioned": "Previously mentioned"
+    }
+  },
+  "hindi": {
+    "procedural_terms": {
+      "याचिका": "न्यायालय को प्रस्तुत किया गया औपचारिक लिखित अनुरोध",
+      "अपील": "उच्च न्यायालय से निम्न न्यायालय के निर्णय की समीक्षा का अनुरोध",
+      "मुकदमा": "न्यायालय में लाया गया कानूनी कार्य",
+      "निर्णय": "न्यायालय का आधिकारिक निर्णय",
+      "आदेश": "न्यायालय द्वारा जारी किया गया निर्देश",
+      "डिक्री": "न्यायालय द्वारा जारी किया गया औपचारिक आदेश",
+      "प्रार्थना": "न्यायालय से की गई प्रार्थना"
+    },
+    "party_terms": {
+      "याचिकाकर्ता": "जो व्यक्ति याचिका दाखिल करता है",
+      "प्रतिवादी": "जिस पर मुकदमा दायर किया जाता है",
+      "वादी": "जो व्यक्ति मुकदमा दाखिल करता है",
+      "अपीलकर्ता": "जो व्यक्ति अपील करता है",
+      "वकील": "कानूनी सलाहकार"
+    },
+    "legal_concepts": {
+      "दायित्व": "कार्यों के लिए कानूनी जिम्मेदारी",
+      "लापरवाही": "उचित देखभाल करने में विफलता",
+      "अपकृत्य": "नुकसान या हानि का कारण बनने वाला गलत कार्य",
+      "अनुबंध": "पक्षों के बीच बाध्यकारी समझौता",
+      "उल्लंघन": "अनुबंध या कानूनी कर्तव्य का उल्लंघन",
+      "हर्जाना": "हानि या चोट के लिए मुआवजा",
+      "क्षेत्राधिकार": "किसी मामले को सुनने का न्यायालय का अधिकार"
+    },
+    "temporal_expressions": {
+      "जबकि": "किसी दस्तावेज़ की पृष्ठभूमि का परिचय",
+      "इसके बाद": "इस दस्तावेज़ में बाद में",
+      "इसके अंतर्गत": "इस दस्तावेज़ के प्रावधानों के तहत",
+      "इसके द्वारा": "इस दस्तावेज़ के माध्यम से",
+      "पूर्वोक्त": "इस दस्तावेज़ में पहले उल्लेख किया गया"
+    }
+  }
+}
