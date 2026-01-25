@@ -153,3 +153,13 @@
 - [x] Fix file path issues for production environment (updated build script)
 - [x] Verify build script copies data directory correctly
 - [x] Test translation on published site after republishing
+
+## Investigate Translation Quality Regression
+- [x] Compare translation output from 4-5pm version vs current version
+- [x] Review changes made to translationService.ts
+- [x] Review changes made to contextAwareTranslation.ts
+- [x] Check if LLM prompt was modified (found: over-engineered prompt)
+- [x] Identify what caused quality degradation (too complex, overwhelming LLM)
+- [x] Restore translation quality (simplified prompt to essentials)
+- [x] Test with sample documents to verify quality improvement
+- [x] All 54 tests passing after simplification
