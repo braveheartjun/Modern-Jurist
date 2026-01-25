@@ -93,39 +93,39 @@ export default function TranslationWorkspace() {
   };
 
   return (
-    <div className="container max-w-[1600px] py-6 space-y-6 animate-in fade-in duration-500 h-[calc(100vh-5rem)] flex flex-col">
+    <div className="container max-w-[1600px] py-4 md:py-6 space-y-4 md:space-y-6 animate-in fade-in duration-500 min-h-[calc(100vh-5rem)] flex flex-col">
       {/* Toolbar */}
-      <div className="flex justify-between items-center bg-card border rounded-lg p-4 shadow-sm">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center bg-card border rounded-lg p-4 shadow-sm gap-4">
+        <div className="flex flex-wrap items-center gap-3 md:gap-4 w-full md:w-auto">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-5 w-5 text-green-600" />
-            <span className="text-sm font-medium text-muted-foreground">Secure Environment</span>
+            <span className="text-sm font-medium text-muted-foreground">Secure</span>
           </div>
-          <Separator orientation="vertical" className="h-6" />
-          <Badge variant="secondary" className="px-3 py-1">
-            Engine: Senior Legal Translator v2.1
+          <Separator orientation="vertical" className="h-6 hidden md:block" />
+          <Badge variant="secondary" className="px-2 py-1 text-xs md:text-sm md:px-3">
+            v2.1
           </Badge>
-          <Separator orientation="vertical" className="h-6" />
+          <Separator orientation="vertical" className="h-6 hidden md:block" />
           <GlossaryManager glossaries={glossaries} onUpdateGlossaries={setGlossaries} />
           {activeGlossaryCount > 0 && (
-            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-              {activeGlossaryCount} Active Glossaries
+            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
+              {activeGlossaryCount} Active
             </Badge>
           )}
         </div>
-        <div className="flex gap-3">
-           <Button variant="outline" size="sm" disabled={step !== "result"}>
+        <div className="flex gap-2 w-full md:w-auto">
+           <Button variant="outline" size="sm" disabled={step !== "result"} className="flex-1 md:flex-none">
              <FileText className="mr-2 h-4 w-4" />
-             Export PDF
+             PDF
            </Button>
-           <Button size="sm" disabled={step !== "result"}>
-             Download DOCX
+           <Button size="sm" disabled={step !== "result"} className="flex-1 md:flex-none">
+             DOCX
            </Button>
         </div>
       </div>
 
       {/* Main Workspace */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
         
         {/* Left Panel: Source / Controls */}
         <div className="lg:col-span-4 space-y-6">
@@ -262,26 +262,26 @@ export default function TranslationWorkspace() {
 
             {step === "result" && (
               <div className="flex flex-col h-full">
-                <div className="border-b p-3 flex justify-between items-center bg-muted/20">
+                <div className="border-b p-3 flex flex-col md:flex-row justify-between items-start md:items-center bg-muted/20 gap-2">
                   <div className="flex items-center gap-3">
                     <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3" /> Translation Complete
+                      <CheckCircle2 className="w-3 h-3" /> Complete
                     </Badge>
-                    <span className="text-xs text-muted-foreground font-medium">Confidence Score: 98%</span>
+                    <span className="text-xs text-muted-foreground font-medium">Score: 98%</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                    Legal Terminology Verified
+                    Verified
                   </div>
                 </div>
                 
-                <div className="flex-1 grid grid-cols-2 divide-x h-full overflow-hidden">
+                <div className="flex-1 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x h-full overflow-hidden">
                   {/* Source Preview */}
-                  <div className="flex flex-col h-full bg-muted/5">
+                  <div className="flex flex-col h-[300px] md:h-full bg-muted/5">
                     <div className="p-3 border-b bg-muted/10 flex justify-between items-center">
-                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Original Document (English)</h4>
+                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Original (English)</h4>
                     </div>
-                    <ScrollArea className="flex-1 p-6">
+                    <ScrollArea className="flex-1 p-4 md:p-6">
                       <div className="space-y-6 text-sm font-serif leading-loose text-foreground/80 max-w-prose mx-auto">
                         <div className="text-center font-bold text-lg border-b pb-4 mb-4">GENERAL POWER OF ATTORNEY</div>
                         <p>KNOW ALL MEN BY THESE PRESENTS that we, the Legal Heirs of Late Shri Premnath Sharma...</p>
@@ -298,11 +298,11 @@ export default function TranslationWorkspace() {
                   <div className="flex flex-col h-full bg-background">
                     <div className="p-3 border-b bg-primary/5 flex justify-between items-center">
                       <h4 className="text-xs font-bold text-primary uppercase tracking-wider">
-                        Translated Output ({targetLang === 'hindi' ? 'Hindi' : targetLang === 'marathi' ? 'Marathi' : 'Target'})
+                        Translated ({targetLang === 'hindi' ? 'Hindi' : targetLang === 'marathi' ? 'Marathi' : 'Target'})
                       </h4>
                       <Badge variant="secondary" className="text-[10px]">Draft v1.0</Badge>
                     </div>
-                    <ScrollArea className="flex-1 p-6">
+                    <ScrollArea className="flex-1 p-4 md:p-6">
                       <div className="space-y-6 text-sm font-serif leading-loose text-foreground max-w-prose mx-auto">
                         <div className="text-center font-bold text-lg border-b pb-4 mb-4 text-primary">
                           {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : 
