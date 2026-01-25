@@ -98,8 +98,19 @@ export default function TranslationWorkspace() {
     onError: (error) => {
       setIsProcessing(false);
       setStep("upload");
+      setProgress(0);
       console.error("Translation error:", error);
-      alert("Translation failed: " + error.message);
+      
+      // Extract more detailed error information
+      let errorMessage = "Translation failed";
+      if (error.message) {
+        errorMessage = error.message;
+      }
+      if (error.data && 'zodError' in error.data) {
+        errorMessage = "Invalid input: " + JSON.stringify((error.data as any).zodError);
+      }
+      
+      alert("Translation failed: " + errorMessage + "\n\nPlease check the console for more details.");
     },
   });
 
@@ -114,37 +125,60 @@ export default function TranslationWorkspace() {
       // Read file as base64
       const reader = new FileReader();
       reader.onload = async (e) => {
-        const base64 = e.target?.result?.toString().split(",")[1];
-        if (!base64) {
-          alert("Failed to read file");
+        try {
+          const base64 = e.target?.result?.toString().split(",")[1];
+          if (!base64) {
+            alert("Failed to read file");
+            setIsProcessing(false);
+            setStep("upload");
+            return;
+          }
+
+          console.log("File read successfully, size:", base64.length, "bytes");
+          setProgress(20);
+          setProcessingStage("Extracting text from document...");
+
+          // Prepare custom glossary
+          const customGlossary = glossaries
+            .filter((g) => g.active)
+            .flatMap((g) => g.terms);
+
+          setProgress(40);
+          setProcessingStage("Translating with legal terminology...");
+
+          console.log("Calling translation API with:", {
+            filename: file.name,
+            sourceLang: "English",
+            targetLang: targetLang === "hindi" ? "Hindi" : targetLang === "marathi" ? "Marathi" : targetLang === "gujarati" ? "Gujarati" : "Kannada",
+            hasGlossary: customGlossary.length > 0,
+            documentType: "Legal Document",
+          });
+
+          // Call translation API
+          translateMutation.mutate({
+            fileBuffer: base64,
+            filename: file.name,
+            sourceLang: "English",
+            targetLang: targetLang === "hindi" ? "Hindi" : targetLang === "marathi" ? "Marathi" : targetLang === "gujarati" ? "Gujarati" : "Kannada",
+            customGlossary: customGlossary.length > 0 ? customGlossary : undefined,
+            documentType: "Legal Document",
+          });
+
+          setProgress(80);
+          setProcessingStage("Finalizing translation...");
+        } catch (err) {
+          console.error("Error in file reader onload:", err);
+          alert("Failed to process file: " + (err as Error).message);
           setIsProcessing(false);
           setStep("upload");
-          return;
         }
+      };
 
-        setProgress(20);
-        setProcessingStage("Extracting text from document...");
-
-        // Prepare custom glossary
-        const customGlossary = glossaries
-          .filter((g) => g.active)
-          .flatMap((g) => g.terms);
-
-        setProgress(40);
-        setProcessingStage("Translating with legal terminology...");
-
-        // Call translation API
-        translateMutation.mutate({
-          fileBuffer: base64,
-          filename: file.name,
-          sourceLang: "English",
-          targetLang: targetLang === "hindi" ? "Hindi" : "Marathi",
-          customGlossary: customGlossary.length > 0 ? customGlossary : undefined,
-          documentType: "Legal Document",
-        });
-
-        setProgress(80);
-        setProcessingStage("Finalizing translation...");
+      reader.onerror = (err) => {
+        console.error("FileReader error:", err);
+        alert("Failed to read file");
+        setIsProcessing(false);
+        setStep("upload");
       };
 
       reader.readAsDataURL(file);

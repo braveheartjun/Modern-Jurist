@@ -117,3 +117,11 @@
 - [x] Update download button to show "Download with Citations" only when citations exist
 - [x] Show regular "Download" button with format options when no citations
 - [x] Test both scenarios (with and without citations)
+
+## Fix Translation Failure
+- [x] Convert documentProcessor.ts from CommonJS require() to ES module imports
+- [x] Add comprehensive error logging and handling
+- [x] Improve error messages to show detailed information
+- [ ] Test document upload and translation with PDF files
+- [ ] Test document upload and translation with DOCX files
+- [x] Verify error handling works correctly
