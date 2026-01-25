@@ -40,3 +40,14 @@
 - [x] Build Translation Memory suggestion UI
 - [x] Add accept/dismiss actions for suggestions
 - [x] Test translation memory with various phrases
+
+## Real Translation Implementation
+- [x] Install document processing libraries (pdf-parse, mammoth for DOCX)
+- [x] Implement backend API to extract text from uploaded PDFs
+- [x] Implement backend API to extract text from uploaded DOCX files
+- [x] Create translation service using LLM API
+- [x] Apply custom glossaries during translation
+- [x] Enhance translation with legal terminology database
+- [x] Update frontend to upload files to backend
+- [x] Replace demo content with real translated output
+- [x] Test translation with actual PDF and DOCX documents

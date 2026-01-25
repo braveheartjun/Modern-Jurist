@@ -7,6 +7,8 @@ import { z } from "zod";
 import { saveDocumentVersion, getDocumentVersions, getVersionById } from "./versionDb";
 import { generatePDFWithCitations } from "./pdfGenerator";
 import { saveTranslationPair, findSimilarTranslations } from "./translationMemoryDb";
+import { processDocument } from "./documentProcessor";
+import { translateLargeDocument } from "./translationService";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -77,6 +79,44 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const pdfBuffer = await generatePDFWithCitations(input);
         return { pdf: pdfBuffer.toString("base64") };
+      }),
+  }),
+
+  // Document translation
+  translate: router({
+    document: publicProcedure
+      .input(
+        z.object({
+          fileBuffer: z.string(), // base64 encoded
+          filename: z.string(),
+          sourceLang: z.string(),
+          targetLang: z.string(),
+          customGlossary: z.array(z.object({ source: z.string(), target: z.string() })).optional(),
+          documentType: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        // Decode base64 file buffer
+        const buffer = Buffer.from(input.fileBuffer, "base64");
+
+        // Extract text from document
+        const { text: sourceText, type } = await processDocument(buffer, input.filename);
+
+        // Translate the extracted text
+        const result = await translateLargeDocument({
+          sourceText,
+          sourceLang: input.sourceLang,
+          targetLang: input.targetLang,
+          customGlossary: input.customGlossary,
+          documentType: input.documentType,
+        });
+
+        return {
+          sourceText,
+          translatedText: result.translatedText,
+          confidence: result.confidence,
+          documentType: type,
+        };
       }),
   }),
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -84,34 +85,74 @@ export default function TranslationWorkspace() {
     }
   };
 
-  const startTranslation = () => {
+  const translateMutation = trpc.translate.document.useMutation({
+    onSuccess: (data) => {
+      setSourceText(data.sourceText);
+      setTranslatedContent(data.translatedText);
+      setIsProcessing(false);
+      setStep("result");
+      setProgress(100);
+      setProcessingStage("Translation complete!");
+    },
+    onError: (error) => {
+      setIsProcessing(false);
+      setStep("upload");
+      console.error("Translation error:", error);
+      alert("Translation failed: " + error.message);
+    },
+  });
+
+  const startTranslation = async () => {
     if (!file) return;
     setStep("processing");
     setIsProcessing(true);
-    
-    // Simulate processing stages
-    const stages = [
-      { p: 10, msg: "Initializing Secure Environment..." },
-      { p: 30, msg: "Scanning Document (OCR)..." },
-      { p: 50, msg: "Analyzing Legal Context..." },
-      { p: 65, msg: "Mapping Clauses & Terminology..." },
-      { p: 80, msg: `Applying ${activeGlossaryCount} Custom Glossaries...` },
-      { p: 90, msg: "Generating Draft..." },
-      { p: 100, msg: "Finalizing..." }
-    ];
+    setProgress(0);
+    setProcessingStage("Reading document...");
 
-    let currentStage = 0;
-    const interval = setInterval(() => {
-      if (currentStage >= stages.length) {
-        clearInterval(interval);
-        setIsProcessing(false);
-        setStep("result");
-        return;
-      }
-      setProgress(stages[currentStage].p);
-      setProcessingStage(stages[currentStage].msg);
-      currentStage++;
-    }, 800);
+    try {
+      // Read file as base64
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64 = e.target?.result?.toString().split(",")[1];
+        if (!base64) {
+          alert("Failed to read file");
+          setIsProcessing(false);
+          setStep("upload");
+          return;
+        }
+
+        setProgress(20);
+        setProcessingStage("Extracting text from document...");
+
+        // Prepare custom glossary
+        const customGlossary = glossaries
+          .filter((g) => g.active)
+          .flatMap((g) => g.terms);
+
+        setProgress(40);
+        setProcessingStage("Translating with legal terminology...");
+
+        // Call translation API
+        translateMutation.mutate({
+          fileBuffer: base64,
+          filename: file.name,
+          sourceLang: "English",
+          targetLang: targetLang === "hindi" ? "Hindi" : "Marathi",
+          customGlossary: customGlossary.length > 0 ? customGlossary : undefined,
+          documentType: "Legal Document",
+        });
+
+        setProgress(80);
+        setProcessingStage("Finalizing translation...");
+      };
+
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("File reading error:", error);
+      alert("Failed to process file");
+      setIsProcessing(false);
+      setStep("upload");
+    }
   };
 
   const handleCitationAccept = (citation: Citation) => {
