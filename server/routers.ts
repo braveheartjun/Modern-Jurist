@@ -136,6 +136,7 @@ export const appRouter = router({
           translatedText: result.translatedText,
           confidence: result.confidence,
           documentType: type,
+          qualityScore: result.qualityScore,
         };
       }),
   }),

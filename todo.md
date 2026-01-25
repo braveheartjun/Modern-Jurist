@@ -132,3 +132,15 @@
 - [x] Verify LLM API is accessible and working
 - [x] Test with a simple text file to isolate the issue
 - [x] Fix the identified root cause (__dirname not defined in ES modules)
+
+## Translation Quality Scoring System
+- [x] Design quality scoring algorithm (terminology matches, corpus similarity, complexity)
+- [x] Implement quality score calculation in qualityScoring.ts
+- [x] Add quality score to translation response structure
+- [x] Update side-by-side editor to display quality scores
+- [x] Add visual indicators (color coding) for different confidence levels
+- [x] Add manual review warning for low-confidence translations (< 70%)
+- [x] Add tooltip explanations for quality score factors
+- [x] Create QualityScorePanel component with detailed metrics
+- [x] Create unit tests for quality scoring algorithm (13 tests, all passing)
+- [x] Test with various document types and languages

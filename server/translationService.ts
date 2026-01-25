@@ -1,6 +1,7 @@
 import { invokeLLM } from "./_core/llm";
 import { translateLegalDocument, detectDocumentType } from "./contextAwareTranslation";
 import { searchDocuments } from "./databaseSearch";
+import { analyzeDocumentQuality, getDocumentQualityScore, type SectionScore } from "./qualityScoring";
 
 interface TranslationOptions {
   sourceText: string;
@@ -15,7 +16,21 @@ interface TranslationOptions {
  */
 export async function translateDocument(
   options: TranslationOptions
-): Promise<{ translatedText: string; confidence: number }> {
+): Promise<{ 
+  translatedText: string; 
+  confidence: number;
+  qualityScore?: {
+    overall: number;
+    confidence: "high" | "medium" | "low";
+    factors: {
+      terminologyMatch: number;
+      corpusSimilarity: number;
+      complexity: number;
+    };
+    details: string;
+    sections?: SectionScore[];
+  };
+}> {
   const { sourceText, sourceLang, targetLang, customGlossary, documentType } = options;
 
   // Detect document type if not provided
@@ -58,9 +73,25 @@ export async function translateDocument(
     // Calculate confidence based on response quality indicators
     const confidence = calculateConfidence(translatedText, sourceText);
 
+    // Analyze translation quality with detailed scoring
+    const sectionScores = analyzeDocumentQuality(
+      sourceText,
+      translatedText,
+      sourceLang,
+      targetLang,
+      customGlossary?.length || 0,
+      corpusExamples.length
+    );
+
+    const qualityScore = getDocumentQualityScore(sectionScores);
+
     return {
       translatedText,
       confidence,
+      qualityScore: {
+        ...qualityScore,
+        sections: sectionScores
+      }
     };
   } catch (error) {
     console.error("[Translation Service] Error:", error);
@@ -160,7 +191,20 @@ function calculateConfidence(translatedText: string, sourceText: string): number
 export async function translateLargeDocument(
   options: TranslationOptions,
   onProgress?: (progress: number) => void
-): Promise<{ translatedText: string; confidence: number }> {
+): Promise<{ 
+  translatedText: string; 
+  confidence: number;
+  qualityScore?: {
+    overall: number;
+    confidence: "high" | "medium" | "low";
+    factors: {
+      terminologyMatch: number;
+      corpusSimilarity: number;
+      complexity: number;
+    };
+    details: string;
+  };
+}> {
   const { sourceText } = options;
   const maxChunkSize = 3000; // characters per chunk
 

@@ -56,6 +56,16 @@ export default function TranslationWorkspace() {
   const [showTranslationMemory, setShowTranslationMemory] = useState(false);
   const [acceptedCitations, setAcceptedCitations] = useState<Citation[]>([]);
   const [sourceText, setSourceText] = useState("");
+  const [qualityScore, setQualityScore] = useState<{
+    overall: number;
+    confidence: "high" | "medium" | "low";
+    factors: {
+      terminologyMatch: number;
+      corpusSimilarity: number;
+      complexity: number;
+    };
+    details: string;
+  } | null>(null);
   
   // Mock current user for collaboration
   const currentUser = {
@@ -90,6 +100,7 @@ export default function TranslationWorkspace() {
     onSuccess: (data) => {
       setSourceText(data.sourceText);
       setTranslatedContent(data.translatedText);
+      setQualityScore(data.qualityScore || null);
       setIsProcessing(false);
       setStep("result");
       setProgress(100);
@@ -421,6 +432,7 @@ export default function TranslationWorkspace() {
                 onTranslatedTextChange={setTranslatedContent}
                 documentTitle={targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : DEMO_TRANSLATIONS.marathi.title}
                 citations={acceptedCitations}
+                qualityScore={qualityScore || undefined}
               />
             )}
 
