@@ -23,21 +23,46 @@ export default function DocumentExplorer() {
   const [langFilter, setLangFilter] = useState("all");
 
   useEffect(() => {
-    fetch("/data/database.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const allDocs: Document[] = [];
-        Object.values(data.by_language).forEach((docs: any) => {
-          allDocs.push(...docs);
+    const loadData = async () => {
+      try {
+        // Load original database
+        const dbRes = await fetch("/data/database.json");
+        const dbData = await dbRes.json();
+        const originalDocs: Document[] = [];
+        Object.values(dbData.by_language).forEach((docs: any) => {
+          originalDocs.push(...docs);
         });
-        setDocuments(allDocs);
-        setFilteredDocs(allDocs);
-        setLoading(false);
-      })
-      .catch((err) => {
+
+        // Load new scraped data
+        try {
+          const scrapedRes = await fetch("/src/data/scraped_documents.json");
+          if (scrapedRes.ok) {
+            const scrapedData = await scrapedRes.json();
+            // Map scraped data to Document interface
+            const newDocs = scrapedData.map((d: any) => ({
+              title: d.title,
+              type: d.type,
+              source: d.source,
+              language: d.language.toLowerCase(),
+              file: d.url,
+              has_bilingual: !!d.hindi_url
+            }));
+            originalDocs.push(...newDocs);
+          }
+        } catch (e) {
+          console.warn("Could not load scraped documents", e);
+        }
+
+        setDocuments(originalDocs);
+        setFilteredDocs(originalDocs);
+      } catch (err) {
         console.error("Failed to load data", err);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    loadData();
   }, []);
 
   useEffect(() => {
