@@ -1,4 +1,6 @@
 import { invokeLLM } from "./_core/llm";
+import { translateLegalDocument, detectDocumentType } from "./contextAwareTranslation";
+import { searchDocuments } from "./databaseSearch";
 
 interface TranslationOptions {
   sourceText: string;
@@ -9,55 +11,49 @@ interface TranslationOptions {
 }
 
 /**
- * Translate legal document using LLM with legal terminology enhancement
+ * Translate legal document using context-aware translation with legal corpus
  */
 export async function translateDocument(
   options: TranslationOptions
 ): Promise<{ translatedText: string; confidence: number }> {
   const { sourceText, sourceLang, targetLang, customGlossary, documentType } = options;
 
-  // Build glossary context
+  // Detect document type if not provided
+  const detectedType = documentType || detectDocumentType(sourceText);
+
+  // Search for similar documents in the corpus for context
+  const corpusExamples = await findCorpusExamples(sourceText, sourceLang, targetLang, detectedType);
+
+  // Build custom glossary context
   let glossaryContext = "";
   if (customGlossary && customGlossary.length > 0) {
-    glossaryContext = `\n\nIMPORTANT TERMINOLOGY MAPPINGS (use these exact translations):\n${customGlossary
+    glossaryContext = `\n\n**Custom Terminology (MUST use these exact translations):**\n${customGlossary
       .map((term) => `- "${term.source}" → "${term.target}"`)
       .join("\n")}`;
   }
 
-  // Build system prompt with legal expertise
-  const systemPrompt = `You are an expert legal translator specializing in Indian law with deep knowledge of legal terminology in English, Hindi, and Marathi.
-
-Your task is to translate legal documents with the highest accuracy, preserving:
-1. Legal terminology precision
-2. Formal tone and structure
-3. Clause numbering and formatting
-4. Case law references and citations
-
-${documentType ? `Document Type: ${documentType}` : ""}${glossaryContext}
-
-CRITICAL RULES:
-- Maintain legal accuracy above all else
-- Use formal court-standard language
-- Preserve all numbers, dates, and proper nouns
-- Keep section/clause structure intact
-- If a term has a standard legal translation, use it consistently`;
-
-  const userPrompt = `Translate the following legal document from ${sourceLang} to ${targetLang}:
-
-${sourceText}
-
-Provide ONLY the translated text without any explanations or notes.`;
+  // Build corpus context from similar documents
+  let corpusContext = "";
+  if (corpusExamples.length > 0) {
+    corpusContext = `\n\n**Reference Examples from Legal Corpus:**\n${corpusExamples
+      .slice(0, 3)
+      .map((ex, i) => `Example ${i + 1}: ${ex.title}\nSource: ${ex.source}\nExcerpt: ${ex.excerpt.substring(0, 200)}...`)
+      .join("\n\n")}`;
+  }
 
   try {
-    const response = await invokeLLM({
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
-    });
+    // Use the context-aware translation engine
+    let translatedText = await translateLegalDocument(
+      sourceText,
+      sourceLang,
+      targetLang,
+      detectedType
+    );
 
-    const content = response.choices[0]?.message?.content;
-    const translatedText = typeof content === 'string' ? content : '';
+    // Apply custom glossary replacements if provided
+    if (customGlossary && customGlossary.length > 0) {
+      translatedText = applyCustomGlossary(translatedText, customGlossary, sourceLang, targetLang);
+    }
 
     // Calculate confidence based on response quality indicators
     const confidence = calculateConfidence(translatedText, sourceText);
@@ -70,6 +66,65 @@ Provide ONLY the translated text without any explanations or notes.`;
     console.error("[Translation Service] Error:", error);
     throw new Error("Translation failed");
   }
+}
+
+/**
+ * Find similar documents in the corpus for context
+ */
+async function findCorpusExamples(
+  sourceText: string,
+  sourceLang: string,
+  targetLang: string,
+  documentType: string
+): Promise<Array<{ title: string; source: string; excerpt: string }>> {
+  try {
+    // Extract key terms from source text for search
+    const searchTerms = extractKeyTerms(sourceText);
+    
+    // Search the database for similar documents
+    const results = await searchDocuments(searchTerms, {
+      document_type: documentType !== "general" ? documentType : undefined
+    });
+
+    return results.map((doc: any) => ({
+      title: doc.title,
+      source: doc.source,
+      excerpt: doc.content_summary || ""
+    }));
+  } catch (error) {
+    console.error("[Corpus Search] Error:", error);
+    return [];
+  }
+}
+
+/**
+ * Extract key terms from text for corpus search
+ */
+function extractKeyTerms(text: string): string {
+  // Simple extraction - take first 100 words
+  const words = text.split(/\s+/).slice(0, 100);
+  return words.join(" ");
+}
+
+/**
+ * Apply custom glossary replacements to translated text
+ */
+function applyCustomGlossary(
+  text: string,
+  glossary: Array<{ source: string; target: string }>,
+  sourceLang: string,
+  targetLang: string
+): string {
+  let result = text;
+  
+  // Apply each glossary term replacement
+  for (const term of glossary) {
+    // Create regex for case-insensitive matching
+    const regex = new RegExp(term.source, "gi");
+    result = result.replace(regex, term.target);
+  }
+  
+  return result;
 }
 
 /**

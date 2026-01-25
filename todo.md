@@ -66,3 +66,24 @@
 - [x] Test resource recall in translation workflow
 - [x] Test resource recall in citation generator
 - [x] Test resource recall in reference library
+
+## Context-Aware Translation Engine Rebuild
+- [ ] Scrape regional legal document templates in English
+- [ ] Scrape regional legal document templates in Hindi
+- [ ] Scrape regional legal document templates in Gujarati
+- [ ] Scrape regional legal document templates in Marathi
+- [ ] Scrape regional legal document templates in Kannada
+- [ ] Organize corpus by language and document type (contract, agreement, application, appeal, memo)
+- [ ] Extract common legal phrases and clauses in each language
+- [ ] Build pattern database for regional document conventions
+- [ ] Analyze formatting differences across languages
+- [ ] Rebuild translation service to use corpus as context examples
+- [ ] Implement clause-by-clause translation with context matching
+- [ ] Preserve document structure and formatting conventions
+- [ ] Test translation quality for English ↔ Hindi
+- [ ] Test translation quality for English ↔ Gujarati
+- [ ] Test translation quality for English ↔ Marathi
+- [ ] Test translation quality for English ↔ Kannada
+- [ ] Test translation quality for inter-regional languages (Hindi ↔ Gujarati, etc.)
+- [ ] Compare translation quality against Google Translate baseline
+- [ ] Validate with sample legal documents in all language pairs

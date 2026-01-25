@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "languages": [
+      "english",
+      "hindi",
+      "gujarati",
+      "marathi",
+      "kannada"
+    ],
+    "total_terms": 32,
+    "total_patterns": 3
+  },
+  "terminology": {
+    "party_of_first_part": {
+      "english": "Party of the First Part",
+      "hindi": "प्रथम पक्ष",
+      "gujarati": "પ્રથમ પક્ષ",
+      "marathi": "पहिला पक्ष",
+      "kannada": "ಮೊದಲ ಪಕ್ಷ"
+    },
+    "party_of_second_part": {
+      "english": "Party of the Second Part",
+      "hindi": "द्वितीय पक्ष",
+      "gujarati": "બીજો પક્ષ",
+      "marathi": "दुसरा पक्ष",
+      "kannada": "ಎರಡನೇ ಪಕ್ಷ"
+    },
+    "whereas": {
+      "english": "WHEREAS",
+      "hindi": "चूंकि / जबकि",
+      "gujarati": "જ્યારે કે",
+      "marathi": "जेव्हा",
+      "kannada": "ಆದರೆ"
+    },
+    "now_therefore": {
+      "english": "NOW THEREFORE",
+      "hindi": "अब इसलिए",
+      "gujarati": "હવે તેથી",
+      "marathi": "आता म्हणून",
+      "kannada": "ಈಗ ಆದ್ದರಿಂದ"
+    },
+    "witnesseth": {
+      "english": "WITNESSETH",
+      "hindi": "साक्षी है",
+      "gujarati": "સાક્ષી આપે છે",
+      "marathi": "साक्ष देतो",
+      "kannada": "ಸಾಕ್ಷಿಯಾಗಿದೆ"
+    },
+    "in_witness_whereof": {
+      "english": "IN WITNESS WHEREOF",
+      "hindi": "इसके साक्ष्य में",
+      "gujarati": "જેના સાક્ષીમાં",
+      "marathi": "ज्याच्या साक्षीने",
+      "kannada": "ಇದರ ಸಾಕ್ಷಿಯಾಗಿ"
+    },
+    "hereinafter_referred": {
+      "english": "hereinafter referred to as",
+      "hindi": "जिसे इसके बाद कहा जाएगा",
+      "gujarati": "જેને આગળ કહેવામાં આવશે",
+      "marathi": "ज्याला यापुढे म्हटले जाईल",
+      "kannada": "ಇನ್ನು ಮುಂದೆ ಉಲ್ಲೇಖಿಸಲಾಗುವುದು"
+    },
+    "consideration": {
+      "english": "consideration",
+      "hindi": "प्रतिफल",
+      "gujarati": "વિચારણા",
+      "marathi": "प्रतिफळ",
+      "kannada": "ಪರಿಗಣನೆ"
+    },
+    "agreement": {
+      "english": "Agreement",
+      "hindi": "समझौता / करार",
+      "gujarati": "કરાર",
+      "marathi": "करार",
+      "kannada": "ಒಪ್ಪಂದ"
+    },
+    "deed": {
+      "english": "Deed",
+      "hindi": "विलेख",
+      "gujarati": "ખત",
+      "marathi": "खत",
+      "kannada": "ಪತ್ರ"
+    },
+    "affidavit": {
+      "english": "Affidavit",
+      "hindi": "शपथ पत्र",
+      "gujarati": "શપથપત્ર",
+      "marathi": "प्रतिज्ञापत्र",
+      "kannada": "ಪ್ರಮಾಣ ಪತ್ರ"
+    },
+    "power_of_attorney": {
+      "english": "Power of Attorney",
+      "hindi": "मुख्तारनामा",
+      "gujarati": "મુખત્યારનામું",
+      "marathi": "मुखत्यारपत्र",
+      "kannada": "ಮುಖ್ತಾರ್ ನಾಮೆ"
+    },
+    "lease": {
+      "english": "Lease",
+      "hindi": "पट्टा",
+      "gujarati": "લીઝ",
+      "marathi": "भाडेपट्टी",
+      "kannada": "ಗುತ್ತಿಗೆ"
+    },
+    "gift_deed": {
+      "english": "Gift Deed",
+      "hindi": "दान पत्र",
+      "gujarati": "દાનપત્ર",
+      "marathi": "दानपत्र",
+      "kannada": "ದಾನ ಪತ್ರ"
+    },
+    "will": {
+      "english": "Will",
+      "hindi": "वसीयत",
+      "gujarati": "વસિયતનામું",
+      "marathi": "वसीयत",
+      "kannada": "ಉಯಿಲು"
+    },
+    "notice": {
+      "english": "Notice",
+      "hindi": "नोटिस",
+      "gujarati": "નોટિસ",
+      "marathi": "नोटीस",
+      "kannada": "ನೋಟೀಸ್"
+    },
+    "plaintiff": {
+      "english": "Plaintiff",
+      "hindi": "वादी",
+      "gujarati": "ફરિયાદી",
+      "marathi": "फिर्यादी",
+      "kannada": "ಫಿರ್ಯಾದಿ"
+    },
+    "defendant": {
+      "english": "Defendant",
+      "hindi": "प्रतिवादी",
+      "gujarati": "પ્રતિવાદી",
+      "marathi": "प्रतिवादी",
+      "kannada": "ಪ್ರತಿವಾದಿ"
+    },
+    "petition": {
+      "english": "Petition",
+      "hindi": "याचिका",
+      "gujarati": "અરજી",
+      "marathi": "याचिका",
+      "kannada": "ಅರ್ಜಿ"
+    },
+    "appeal": {
+      "english": "Appeal",
+      "hindi": "अपील",
+      "gujarati": "અપીલ",
+      "marathi": "अपील",
+      "kannada": "ಮೇಲ್ಮನವಿ"
+    },
+    "judgment": {
+      "english": "Judgment",
+      "hindi": "निर्णय",
+      "gujarati": "ચુકાદો",
+      "marathi": "निर्णय",
+      "kannada": "ತೀರ್ಪು"
+    },
+    "court": {
+      "english": "Court",
+      "hindi": "न्यायालय",
+      "gujarati": "અદાલત",
+      "marathi": "न्यायालय",
+      "kannada": "ನ್ಯಾಯಾಲಯ"
+    },
+    "advocate": {
+      "english": "Advocate",
+      "hindi": "अधिवक्ता",
+      "gujarati": "વકીલ",
+      "marathi": "वकील",
+      "kannada": "ವಕೀಲ"
+    },
+    "witness": {
+      "english": "Witness",
+      "hindi": "गवाह / साक्षी",
+      "gujarati": "સાક્ષી",
+      "marathi": "साक्षीदार",
+      "kannada": "ಸಾಕ್ಷಿ"
+    },
+    "signature": {
+      "english": "Signature",
+      "hindi": "हस्ताक्षर",
+      "gujarati": "સહી",
+      "marathi": "स्वाक्षरी",
+      "kannada": "ಸಹಿ"
+    },
+    "stamp_duty": {
+      "english": "Stamp Duty",
+      "hindi": "स्टाम्प शुल्क",
+      "gujarati": "સ્ટેમ્પ ડ્યુટી",
+      "marathi": "मुद्रांक शुल्क",
+      "kannada": "ಮುದ್ರಾಂಕ ಶುಲ್ಕ"
+    },
+    "registration": {
+      "english": "Registration",
+      "hindi": "पंजीकरण",
+      "gujarati": "નોંધણી",
+      "marathi": "नोंदणी",
+      "kannada": "ನೋಂದಣಿ"
+    },
+    "executor": {
+      "english": "Executor",
+      "hindi": "निष्पादक",
+      "gujarati": "વહીવટકર્તા",
+      "marathi": "निष्पादक",
+      "kannada": "ನಿರ್ವಾಹಕ"
+    },
+    "beneficiary": {
+      "english": "Beneficiary",
+      "hindi": "लाभार्थी",
+      "gujarati": "લાભાર્થી",
+      "marathi": "लाभार्थी",
+      "kannada": "ಫಲಾನುಭವಿ"
+    },
+    "property": {
+      "english": "Property",
+      "hindi": "संपत्ति",
+      "gujarati": "મિલકત",
+      "marathi": "मालमत्ता",
+      "kannada": "ಆಸ್ತಿ"
+    },
+    "immovable_property": {
+      "english": "Immovable Property",
+      "hindi": "अचल संपत्ति",
+      "gujarati": "સ્થાવર મિલકત",
+      "marathi": "स्थावर मालमत्ता",
+      "kannada": "ಸ್ಥಿರ ಆಸ್ತಿ"
+    },
+    "movable_property": {
+      "english": "Movable Property",
+      "hindi": "चल संपत्ति",
+      "gujarati": "જંગમ મિલકત",
+      "marathi": "जंगम मालमत्ता",
+      "kannada": "ಚಲಿಸಬಲ್ಲ ಆಸ್ತಿ"
+    }
+  },
+  "patterns": {
+    "agreement_opening": {
+      "english": "THIS AGREEMENT is made on [date] BETWEEN [party1] (hereinafter referred to as 'Party of the First Part') AND [party2] (hereinafter referred to as 'Party of the Second Part')",
+      "hindi": "यह समझौता [तारीख] को [पक्ष1] (जिसे इसके बाद 'प्रथम पक्ष' कहा जाएगा) और [पक्ष2] (जिसे इसके बाद 'द्वितीय पक्ष' कहा जाएगा) के बीच किया गया है",
+      "gujarati": "આ કરાર [તારીખ] ના રોજ [પક્ષ1] (જેને આગળ 'પ્રથમ પક્ષ' તરીકે ઓળખવામાં આવશે) અને [પક્ષ2] (જેને આગળ 'બીજો પક્ષ' તરીકે ઓળખવામાં આવશે) વચ્ચે કરવામાં આવ્યો છે",
+      "marathi": "हा करार [तारीख] रोजी [पक्ष1] (ज्याला यापुढे 'पहिला पक्ष' म्हटले जाईल) आणि [पक्ष2] (ज्याला यापुढे 'दुसरा पक्ष' म्हटले जाईल) यांच्यात केला गेला आहे",
+      "kannada": "ಈ ಒಪ್ಪಂದವನ್ನು [ದಿನಾಂಕ] ರಂದು [ಪಕ್ಷ1] (ಇನ್ನು ಮುಂದೆ 'ಮೊದಲ ಪಕ್ಷ' ಎಂದು ಉಲ್ಲೇಖಿಸಲಾಗುವುದು) ಮತ್ತು [ಪಕ್ಷ2] (ಇನ್ನು ಮುಂದೆ 'ಎರಡನೇ ಪಕ್ಷ' ಎಂದು ಉಲ್ಲೇಖಿಸಲಾಗುವುದು) ನಡುವೆ ಮಾಡಲಾಗಿದೆ"
+    },
+    "whereas_clause": {
+      "english": "WHEREAS the [party] has agreed to [action]",
+      "hindi": "जबकि [पक्ष] ने [कार्य] करने के लिए सहमति व्यक्त की है",
+      "gujarati": "જ્યારે કે [પક્ષ] એ [ક્રિયા] કરવા સંમત થયા છે",
+      "marathi": "जेव्हा [पक्ष] ने [कृती] करण्यास संमती दिली आहे",
+      "kannada": "ಆದರೆ [ಪಕ್ಷ] [ಕ್ರಿಯೆ] ಮಾಡಲು ಒಪ್ಪಿಕೊಂಡಿದೆ"
+    },
+    "witness_clause": {
+      "english": "IN WITNESS WHEREOF the parties have set their hands on the day and year first above written.",
+      "hindi": "इसके साक्ष्य में पक्षों ने उपरोक्त लिखित दिन और वर्ष पर अपने हस्ताक्षर किए हैं।",
+      "gujarati": "જેના સાક્ષીમાં પક્ષોએ ઉપર લખેલા દિવસ અને વર્ષે તેમની સહી કરી છે।",
+      "marathi": "ज्याच्या साक्षीने पक्षांनी वर लिहिलेल्या दिवशी आणि वर्षी त्यांच्या स्वाक्षऱ्या केल्या आहेत।",
+      "kannada": "ಇದರ ಸಾಕ್ಷಿಯಾಗಿ ಪಕ್ಷಗಳು ಮೇಲೆ ಬರೆದ ದಿನ ಮತ್ತು ವರ್ಷದಲ್ಲಿ ತಮ್ಮ ಸಹಿಗಳನ್ನು ಮಾಡಿದ್ದಾರೆ।"
+    }
+  }
+}
