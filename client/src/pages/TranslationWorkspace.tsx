@@ -92,7 +92,19 @@ export default function TranslationWorkspace() {
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
+      // Reset all state when new file is uploaded
       setFile(e.target.files[0]);
+      setStep("upload");
+      setIsProcessing(false);
+      setProgress(0);
+      setProcessingStage("");
+      setTranslatedContent("");
+      setSourceText("");
+      setQualityScore(null);
+      setAcceptedCitations([]);
+      setShowCitations(false);
+      setShowVersionHistory(false);
+      setShowTranslationMemory(false);
     }
   };
 

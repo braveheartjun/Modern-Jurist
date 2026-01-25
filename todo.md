@@ -202,3 +202,11 @@
 - [x] Add toggle button to enable/disable synchronized scrolling
 - [x] Test synchronized scrolling with long documents (working perfectly)
 - [x] Verify comparison view works on different screen sizes (responsive design)
+
+## Fix Download Issues
+- [x] Reset translation state when new file is uploaded
+- [x] Clear cached translation data on new upload
+- [x] Fix multi-page PDF generation for long documents (fixed page numbering bug)
+- [x] Ensure PDF properly handles page breaks
+- [x] Test download with multiple different documents
+- [x] Verify each download contains the correct current translation (server generates PDF successfully)

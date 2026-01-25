@@ -34,9 +34,13 @@ function loadLegalTerminology(targetLang: string): Record<string, string> {
     const data = JSON.parse(readFileSync(termPath, "utf-8"));
     
     const terms: Record<string, string> = {};
-    for (const term of data.terms) {
-      if (term.translations[targetLang]) {
-        terms[term.english] = term.translations[targetLang];
+    // The terminology object has keys like "party_of_first_part" with translations
+    if (data.terminology) {
+      for (const [key, translations] of Object.entries(data.terminology)) {
+        const termObj = translations as any;
+        if (termObj.english && termObj[targetLang]) {
+          terms[termObj.english] = termObj[targetLang];
+        }
       }
     }
     return terms;

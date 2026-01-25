@@ -54,7 +54,12 @@ export function generatePDFWithCitations(options: PDFGenerationOptions): Promise
       doc.fontSize(11).font("Helvetica");
 
       const contentLines = options.content.split("\n");
-      contentLines.forEach((line) => {
+      contentLines.forEach((line, index) => {
+        // Check if we need a new page (leaving space for footer)
+        if (doc.y > doc.page.height - 80) {
+          doc.addPage();
+        }
+        
         if (line.trim()) {
           doc.text(line, { align: "justify", lineGap: 3 });
         } else {
@@ -99,7 +104,7 @@ export function generatePDFWithCitations(options: PDFGenerationOptions): Promise
       // Footer
       const pages = doc.bufferedPageRange();
       for (let i = 0; i < pages.count; i++) {
-        doc.switchToPage(i);
+        doc.switchToPage(pages.start + i);
         doc
           .fontSize(8)
           .font("Helvetica")
