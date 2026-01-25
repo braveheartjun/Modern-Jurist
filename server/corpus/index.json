@@ -1,0 +1,765 @@
+{
+  "totalDocuments": 101,
+  "languages": [
+    "",
+    "english",
+    "gujarati",
+    "hindi",
+    "kannada",
+    "marathi"
+  ],
+  "languageCounts": {
+    "": 1,
+    "english": 21,
+    "gujarati": 21,
+    "hindi": 18,
+    "kannada": 20,
+    "marathi": 20
+  },
+  "documentTypes": [
+    "",
+    "affidavit",
+    "agreement",
+    "application",
+    "bond",
+    "contract",
+    "complaint",
+    "deed",
+    "notice",
+    "mou",
+    "petition",
+    "power of attorney",
+    "resolution",
+    "undertaking",
+    "will",
+    "power_of_attorney"
+  ],
+  "typeCounts": {
+    "": 1,
+    "affidavit": 5,
+    "agreement": 28,
+    "application": 5,
+    "bond": 5,
+    "contract": 4,
+    "complaint": 5,
+    "deed": 11,
+    "notice": 10,
+    "mou": 4,
+    "petition": 6,
+    "power of attorney": 2,
+    "resolution": 4,
+    "undertaking": 5,
+    "will": 5,
+    "power_of_attorney": 1
+  },
+  "lastUpdated": "2026-01-25T14:09:40.186Z",
+  "documents": [
+    {
+      "id": "",
+      "title": "",
+      "language": "",
+      "documentType": "",
+      "source": "generated"
+    },
+    {
+      "id": "eng_affidavit_income_001",
+      "title": "AFFIDAVIT OF ASSETS, INCOME AND EXPENDITURE",
+      "language": "english",
+      "documentType": "affidavit",
+      "source": "generated"
+    },
+    {
+      "id": "eng_agreement_001",
+      "title": "Non-Disclosure Agreement",
+      "language": "english",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "eng_application_bail_001",
+      "title": "Application for Regular Bail under Section 439 Cr.P.C.",
+      "language": "english",
+      "documentType": "application",
+      "source": "generated"
+    },
+    {
+      "id": "eng_bond_indemnity_001",
+      "title": "INDEMNITY BOND",
+      "language": "english",
+      "documentType": "bond",
+      "source": "generated"
+    },
+    {
+      "id": "eng_construction_001",
+      "title": "Construction Contract Agreement",
+      "language": "english",
+      "documentType": "contract",
+      "source": "generated"
+    },
+    {
+      "id": "eng_consumer_complaint_001",
+      "title": "Consumer Complaint under Section 35 of the Consumer Protection Act, 2019",
+      "language": "english",
+      "documentType": "complaint",
+      "source": "generated"
+    },
+    {
+      "id": "eng_deed_gift_001",
+      "title": "Deed of Gift",
+      "language": "english",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "eng_employment_001",
+      "title": "SOFTWARE DEVELOPER EMPLOYMENT AGREEMENT",
+      "language": "english",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "eng_franchise_001",
+      "title": "FRANCHISE AGREEMENT",
+      "language": "english",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "eng_lease_agreement_001",
+      "title": "RESIDENTIAL LEASE AGREEMENT",
+      "language": "english",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "eng_legal_notice_defamation_001",
+      "title": "Legal Notice for Civil and Criminal Defamation and Claim for Damages",
+      "language": "english",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "eng_mou_business_collaboration_001",
+      "title": "MEMORANDUM OF UNDERSTANDING FOR BUSINESS COLLABORATION",
+      "language": "english",
+      "documentType": "mou",
+      "source": "generated"
+    },
+    {
+      "id": "eng_notice_eviction_001",
+      "title": "LEGAL NOTICE TO QUIT TENANCY AND DEMAND FOR ARREARS OF RENT",
+      "language": "english",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "eng_partnership_deed_001",
+      "title": "DEED OF PARTNERSHIP",
+      "language": "english",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "eng_petition_001",
+      "title": "Writ Petition Template",
+      "language": "english",
+      "documentType": "petition",
+      "source": "template"
+    },
+    {
+      "id": "eng_petition_mandamus_001",
+      "title": "Writ Petition (Civil) for Mandamus under Article 226 of the Constitution of India",
+      "language": "english",
+      "documentType": "petition",
+      "source": "generated"
+    },
+    {
+      "id": "eng_power_of_attorney_001",
+      "title": "GENERAL POWER OF ATTORNEY",
+      "language": "english",
+      "documentType": "power of attorney",
+      "source": "generated"
+    },
+    {
+      "id": "eng_resolution_001",
+      "title": "CERTIFIED TRUE COPY OF THE RESOLUTION PASSED AT THE MEETING OF THE BOARD OF DIRECTORS OF TECHNOVATE SOLUTIONS PRIVATE LIMITED HELD ON JANUARY 25, 2024",
+      "language": "english",
+      "documentType": "resolution",
+      "source": "generated"
+    },
+    {
+      "id": "eng_sale_001",
+      "title": "Vehicle Sale Agreement",
+      "language": "english",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "eng_undertaking_court_001",
+      "title": "Undertaking-cum-Affidavit in Civil Suit",
+      "language": "english",
+      "documentType": "undertaking",
+      "source": "generated"
+    },
+    {
+      "id": "eng_will_001",
+      "title": "LAST WILL AND TESTAMENT",
+      "language": "english",
+      "documentType": "will",
+      "source": "generated"
+    },
+    {
+      "id": "guj_agreement_001",
+      "title": "સેવા કરાર નમૂનો",
+      "language": "gujarati",
+      "documentType": "agreement",
+      "source": "template"
+    },
+    {
+      "id": "guj_agreement_agency_001",
+      "title": "એજન્સી કરાર",
+      "language": "gujarati",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "guj_agreement_non_compete_001",
+      "title": "બિન-સ્પર્ધા અને ગુપ્તતા કરાર",
+      "language": "gujarati",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "guj_application_adoption_001",
+      "title": "દત્તક લેવાની અરજી",
+      "language": "gujarati",
+      "documentType": "application",
+      "source": "generated"
+    },
+    {
+      "id": "guj_contract_001",
+      "title": "સલાહકાર સેવા કરાર",
+      "language": "gujarati",
+      "documentType": "contract",
+      "source": "generated"
+    },
+    {
+      "id": "guj_cyber_crime_complaint_001",
+      "title": "સાયબર ક્રાઇમ ફરિયાદ",
+      "language": "gujarati",
+      "documentType": "complaint",
+      "source": "generated"
+    },
+    {
+      "id": "guj_deed_001",
+      "title": "રિયલ એસ્ટેટ ભાગીદારી ખત",
+      "language": "gujarati",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "guj_deed_mortgage_001",
+      "title": "ગીરો વિલેખ (રહેણાંક મિલકત માટે)",
+      "language": "gujarati",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "guj_dob_affidavit_001",
+      "title": "જન્મ તારીખ અંગેનું સોગંદનામું",
+      "language": "gujarati",
+      "documentType": "affidavit",
+      "source": "generated"
+    },
+    {
+      "id": "guj_employment_engineer_001",
+      "title": "એન્જિનિયર રોજગાર કરાર",
+      "language": "gujarati",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "guj_lease_office_001",
+      "title": "ઓફિસ સ્પેસ લીઝ કરાર (Office Space Lease Agreement)",
+      "language": "gujarati",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "guj_mou_research_001",
+      "title": "મેમોરેન્ડમ ઓફ અન્ડરસ્ટેન્ડિંગ (MOU) - સંશોધન સહયોગ માટે",
+      "language": "gujarati",
+      "documentType": "mou",
+      "source": "generated"
+    },
+    {
+      "id": "guj_notice_001",
+      "title": "કરાર ભંગ બદલ કાનૂની નોટિસ",
+      "language": "gujarati",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "guj_notice_payment_001",
+      "title": "ચૂકવણી માટે કાયદેસરની નોટિસ",
+      "language": "gujarati",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "guj_petition_prohibition_001",
+      "title": "ભારતના બંધારણની કલમ ૨૨૬ હેઠળ પ્રતિષેધ (Prohibition) ની રિટ અરજી",
+      "language": "gujarati",
+      "documentType": "petition",
+      "source": "generated"
+    },
+    {
+      "id": "guj_poa_property_management_001",
+      "title": "ખાસ પાવર ઓફ એટર્ની (મિલકત વ્યવસ્થાપન માટે)",
+      "language": "gujarati",
+      "documentType": "power of attorney",
+      "source": "generated"
+    },
+    {
+      "id": "guj_resolution_001",
+      "title": "નિર્દેશક મંડળ ઠરાવ (Director Board Resolution)",
+      "language": "gujarati",
+      "documentType": "resolution",
+      "source": "generated"
+    },
+    {
+      "id": "guj_security_bond_001",
+      "title": "સુરક્ષા બોન્ડ",
+      "language": "gujarati",
+      "documentType": "bond",
+      "source": "generated"
+    },
+    {
+      "id": "guj_undertaking_vachanpatra_001",
+      "title": "વચનપત્ર (લોન ચુકવણી માટેનું બાંહેધરી પત્ર)",
+      "language": "gujarati",
+      "documentType": "undertaking",
+      "source": "generated"
+    },
+    {
+      "id": "guj_will_001",
+      "title": "છેલ્લી ઇચ્છા અને વસિયતનામું",
+      "language": "gujarati",
+      "documentType": "will",
+      "source": "generated"
+    },
+    {
+      "id": "gujarati_sale_agreement_001",
+      "title": "વ્યવસાય વેચાણ કરાર",
+      "language": "gujarati",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hin_affidavit_residence_001",
+      "title": "निवास शपथ पत्र (Residence Affidavit)",
+      "language": "hindi",
+      "documentType": "affidavit",
+      "source": "generated"
+    },
+    {
+      "id": "hin_agreement_001",
+      "title": "गोपनीयता समझौता",
+      "language": "hindi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hin_agreement_educational_001",
+      "title": "शैक्षिक सहयोग समझौता ज्ञापन",
+      "language": "hindi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hin_application_001",
+      "title": "तलाक हेतु याचिका",
+      "language": "hindi",
+      "documentType": "application",
+      "source": "generated"
+    },
+    {
+      "id": "hin_complaint_001",
+      "title": "पुलिस शिकायत पत्र (चोरी और गृह अतिचार)",
+      "language": "hindi",
+      "documentType": "complaint",
+      "source": "generated"
+    },
+    {
+      "id": "hin_deed_sale_001",
+      "title": "विक्रय विलेख",
+      "language": "hindi",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "hin_lease_001",
+      "title": "वाणिज्यिक संपत्ति पट्टा समझौता",
+      "language": "hindi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hin_petition_certiorari_001",
+      "title": "उत्प्रेषण रिट याचिका",
+      "language": "hindi",
+      "documentType": "petition",
+      "source": "generated"
+    },
+    {
+      "id": "hin_sale_agreement_001",
+      "title": "संपत्ति विक्रय समझौता",
+      "language": "hindi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hin_undertaking_001",
+      "title": "वचनबंध पत्र",
+      "language": "hindi",
+      "documentType": "undertaking",
+      "source": "generated"
+    },
+    {
+      "id": "hin_will_001",
+      "title": "वसीयतनामा",
+      "language": "hindi",
+      "documentType": "will",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_agreement_distribution_001",
+      "title": "वितरण समझौता",
+      "language": "hindi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_bond_training_001",
+      "title": "प्रशिक्षण बंधपत्र (Training Bond)",
+      "language": "hindi",
+      "documentType": "bond",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_deed_poa_001",
+      "title": "विशेष मुख्तारनामा (Special Power of Attorney)",
+      "language": "hindi",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_employment_001",
+      "title": "शिक्षक रोजगार अनुबंध",
+      "language": "hindi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_notice_rent_recovery_001",
+      "title": "किराया वसूली हेतु कानूनी नोटिस",
+      "language": "hindi",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_partnership_deed_001",
+      "title": "व्यापार साझेदारी विलेख",
+      "language": "hindi",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "hindi_termination_notice_001",
+      "title": "सेवा समाप्ति नोटिस",
+      "language": "hindi",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "kan_agreement_001",
+      "title": "ಪರವಾನಗಿ ಒಪ್ಪಂದ",
+      "language": "kannada",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "kan_agreement_banking_001",
+      "title": "ಸಾಲ ಒಪ್ಪಂದ",
+      "language": "kannada",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "kan_application_guardianship_001",
+      "title": "ಮೈಸೂರು ಜಿಲ್ಲಾ ನ್ಯಾಯಾಲಯದಲ್ಲಿ ಪಾಲನೆ ಮತ್ತು ಪೋಷಕತ್ವ ಕಾಯಿದೆ, 1890 ರ ಅಡಿಯಲ್ಲಿ ಪಾಲನೆ ಅರ್ಜಿ",
+      "language": "kannada",
+      "documentType": "application",
+      "source": "generated"
+    },
+    {
+      "id": "kan_bond_001",
+      "title": "ನಂಬಿಕೆ ಬಾಂಡ್",
+      "language": "kannada",
+      "documentType": "bond",
+      "source": "generated"
+    },
+    {
+      "id": "kan_complaint_001",
+      "title": "ಶಬ್ದ ಮಾಲಿನ್ಯ ನಿಯಂತ್ರಣ ಮತ್ತು ನಿಯಂತ್ರಣ ನಿಯಮಗಳು, 2000 ರ ಅಡಿಯಲ್ಲಿ ಶಬ್ದ ಮಾಲಿನ್ಯದ ಕುರಿತು ದೂರು",
+      "language": "kannada",
+      "documentType": "complaint",
+      "source": "generated"
+    },
+    {
+      "id": "kan_contract_maintenance_001",
+      "title": "ನಿರ್ವಹಣೆ ಮತ್ತು ಸೇವಾ ಒಪ್ಪಂದ",
+      "language": "kannada",
+      "documentType": "contract",
+      "source": "generated"
+    },
+    {
+      "id": "kan_deed_001",
+      "title": "ದಾನ ಪತ್ರ",
+      "language": "kannada",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "kan_legal_notice_property_dispute_001",
+      "title": "ಆಸ್ತಿ ವಿವಾದದ ಕುರಿತು ಕಾನೂನು ನೋಟೀಸ್",
+      "language": "kannada",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "kan_mou_cultural_exchange_001",
+      "title": "ಸಾಂಸ್ಕೃತಿಕ ವಿನಿಮಯ ತಿಳುವಳಿಕೆ ಒಪ್ಪಂದ",
+      "language": "kannada",
+      "documentType": "mou",
+      "source": "generated"
+    },
+    {
+      "id": "kan_notice_001",
+      "title": "ಎಚ್ಚರಿಕೆ ನೋಟೀಸ್",
+      "language": "kannada",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "kan_partnership_001",
+      "title": "ಪಾಲುದಾರಿಕೆ ಕರಾರು ಪತ್ರ (ತಂತ್ರಜ್ಞಾನ ಪಾಲುದಾರಿಕೆ ಪತ್ರ)",
+      "language": "kannada",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "kan_power_of_attorney_001",
+      "title": "ವೈದ್ಯಕೀಯ ಮುಖ್ತಾರನಾಮೆ ಪತ್ರ",
+      "language": "kannada",
+      "documentType": "power_of_attorney",
+      "source": "generated"
+    },
+    {
+      "id": "kan_resolution_001",
+      "title": "ಕಂಪನಿ ನಿರ್ಣಯ: ಬ್ಯಾಂಕ್ ಖಾತೆ ತೆರೆಯಲು ಅಧಿಕಾರ",
+      "language": "kannada",
+      "documentType": "resolution",
+      "source": "generated"
+    },
+    {
+      "id": "kan_undertaking_001",
+      "title": "ಭರವಸೆ ಪತ್ರ (Letter of Undertaking)",
+      "language": "kannada",
+      "documentType": "undertaking",
+      "source": "generated"
+    },
+    {
+      "id": "kan_will_001",
+      "title": "ಕೊನೆಯ ಇಚ್ಛೆ ಮತ್ತು ಉಯಿಲು",
+      "language": "kannada",
+      "documentType": "will",
+      "source": "generated"
+    },
+    {
+      "id": "kannada_affidavit_name_correction_001",
+      "title": "ಹೆಸರು ತಿದ್ದುಪಡಿ ಪ್ರಮಾಣ ಪತ್ರ",
+      "language": "kannada",
+      "documentType": "affidavit",
+      "source": "generated"
+    },
+    {
+      "id": "kannada_employment_001",
+      "title": "ನರ್ಸ್ ಉದ್ಯೋಗ ಒಪ್ಪಂದ (Nurse Employment Agreement)",
+      "language": "kannada",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "kannada_lease_warehouse_001",
+      "title": "ಗೋದಾಮು ಗುತ್ತಿಗೆ ಕರಾರು",
+      "language": "kannada",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "kannada_petition_quo_warranto_001",
+      "title": "ಭಾರತದ ಸಂವಿಧಾನದ ಅನುಚ್ಛೇದ ೨೨೬ ರ ಅಡಿಯಲ್ಲಿ ಕ್ವೋ ವಾರಂಟೋ ರಿಟ್ ಅರ್ಜಿ",
+      "language": "kannada",
+      "documentType": "petition",
+      "source": "generated"
+    },
+    {
+      "id": "kannada_sale_agreement_001",
+      "title": "ಯಂತ್ರೋಪಕರಣ ಮಾರಾಟ ಒಪ್ಪಂದ",
+      "language": "kannada",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "mar_agreement_001",
+      "title": "सेवा करार नमुना",
+      "language": "marathi",
+      "documentType": "agreement",
+      "source": "template"
+    },
+    {
+      "id": "mar_agreement_doctor_001",
+      "title": "डॉक्टर रोजगार करार",
+      "language": "marathi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "mar_dispossession_notice_001",
+      "title": "बेदखली नोटीस (Dispossession Notice)",
+      "language": "marathi",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "mar_lease_agreement_001",
+      "title": "दुकान भाडे करारनामा",
+      "language": "marathi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "mar_mou_technology_transfer_001",
+      "title": "तंत्रज्ञान हस्तांतरणाबाबत सामंजस्य करार",
+      "language": "marathi",
+      "documentType": "mou",
+      "source": "generated"
+    },
+    {
+      "id": "mar_performance_bond_001",
+      "title": "कामगिरी बाँड",
+      "language": "marathi",
+      "documentType": "bond",
+      "source": "generated"
+    },
+    {
+      "id": "mar_petition_habeas_corpus_001",
+      "title": "बंदी प्रत्यक्षीकरण रिट याचिका (Habeas Corpus Writ Petition)",
+      "language": "marathi",
+      "documentType": "petition",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_affidavit_name_change_001",
+      "title": "नाव बदल प्रतिज्ञापत्र",
+      "language": "marathi",
+      "documentType": "affidavit",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_agreement_insurance_001",
+      "title": "विमा करार (जीवन विमा)",
+      "language": "marathi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_application_001",
+      "title": "मुत्सद्दी नियुक्ती अर्ज (मृत्युपत्राच्या आधारावर)",
+      "language": "marathi",
+      "documentType": "application",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_complaint_001",
+      "title": "महिला उत्पीडन आणि विनयभंग प्रकरणी तक्रार अर्ज",
+      "language": "marathi",
+      "documentType": "complaint",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_deed_001",
+      "title": "भागीदारी विलेख",
+      "language": "marathi",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_notice_cheque_bounce_001",
+      "title": "चेक बाउन्स कायदेशीर नोटीस (कलम १३८, निगोशिएबल इन्स्ट्रुमेंट्स ॲक्ट, १८८१ अन्वये)",
+      "language": "marathi",
+      "documentType": "notice",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_partnership_001",
+      "title": "शैक्षणिक भागीदारी विलेख",
+      "language": "marathi",
+      "documentType": "deed",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_resolution_001",
+      "title": "सदस्य ठराव",
+      "language": "marathi",
+      "documentType": "resolution",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_sale_agreement_001",
+      "title": "जमीन विक्री करारनामा",
+      "language": "marathi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_separation_001",
+      "title": "विभक्त करार",
+      "language": "marathi",
+      "documentType": "agreement",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_transport_contract_001",
+      "title": "वाहतूक करारनामा",
+      "language": "marathi",
+      "documentType": "contract",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_undertaking_001",
+      "title": "हमीपत्र",
+      "language": "marathi",
+      "documentType": "undertaking",
+      "source": "generated"
+    },
+    {
+      "id": "marathi_will_001",
+      "title": "मृत्युपत्र (इच्छापत्र)",
+      "language": "marathi",
+      "documentType": "will",
+      "source": "generated"
+    }
+  ]
+}

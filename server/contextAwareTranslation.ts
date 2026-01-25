@@ -1,4 +1,5 @@
 import { invokeLLM } from "./_core/llm";
+import { searchCorpus } from "./corpusSearch";
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
@@ -44,13 +45,31 @@ export async function translateLegalDocument(
   // Build a concise terminology reference (top 10 most common terms only)
   const terminologyRef = buildConciseTerminologyRef(db, sourceLang, targetLang);
   
+  // Search corpus for similar documents to provide context
+  const similarDocs = searchCorpus({
+    text: sourceText,
+    language: targetLang,
+    documentType,
+    limit: 2
+  });
+  
+  // Build corpus context if similar documents found
+  let corpusContext = "";
+  if (similarDocs.length > 0) {
+    corpusContext = `\n**Reference Examples from Corpus:**\n`;
+    similarDocs.forEach((doc, idx) => {
+      const excerpt = doc.content.substring(0, 200).replace(/\n/g, " ");
+      corpusContext += `${idx + 1}. ${doc.title}: "${excerpt}..."\n`;
+    });
+  }
+  
   const systemPrompt = `You are an expert legal translator specializing in Indian legal documents across English, Hindi, Gujarati, Marathi, and Kannada.
 
 **Your Task:**
 Translate legal documents with precision, maintaining legal terminology accuracy, formal tone, and document structure.
 
 **Key Legal Terms (${sourceLang} → ${targetLang}):**
-${terminologyRef}
+${terminologyRef}${corpusContext}
 
 **Critical Rules:**
 1. Use formal court-standard language appropriate for ${targetLang}

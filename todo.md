@@ -163,3 +163,15 @@
 - [x] Restore translation quality (simplified prompt to essentials)
 - [x] Test with sample documents to verify quality improvement
 - [x] All 54 tests passing after simplification
+
+## Build Legal Document Corpus (100+ documents)
+- [x] Design web scraping system for Indian legal repositories
+- [x] Identify target sources: Court Book, Supreme Court, eCourts, Legislative Dept
+- [x] Implement parallel document generation for multiple document types
+- [x] Generate agreements/contracts in English, Hindi, Gujarati, Marathi, Kannada (21 each)
+- [x] Generate petitions and court documents across languages
+- [x] Generate legal notices, applications, deeds, wills, MOUs, bonds, etc.
+- [x] Store 101 documents in structured format with metadata
+- [x] Create corpus search and similarity matching system
+- [x] Update translation service to use corpus for context
+- [x] Test translation quality improvement with corpus (all 54 tests passing)

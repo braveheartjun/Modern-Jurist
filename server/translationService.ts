@@ -1,6 +1,7 @@
 import { invokeLLM } from "./_core/llm";
 import { translateLegalDocument, detectDocumentType } from "./contextAwareTranslation";
 import { searchDocuments } from "./databaseSearch";
+import { searchCorpus } from "./corpusSearch";
 import { analyzeDocumentQuality, getDocumentQualityScore, type SectionScore } from "./qualityScoring";
 
 interface TranslationOptions {
@@ -109,10 +110,24 @@ async function findCorpusExamples(
   documentType: string
 ): Promise<Array<{ title: string; source: string; excerpt: string }>> {
   try {
-    // Extract key terms from source text for search
-    const searchTerms = extractKeyTerms(sourceText);
+    // Search the corpus for similar documents
+    const corpusDocs = searchCorpus({
+      text: sourceText,
+      language: targetLang,
+      documentType,
+      limit: 3
+    });
+
+    if (corpusDocs.length > 0) {
+      return corpusDocs.map(doc => ({
+        title: doc.title,
+        source: doc.source,
+        excerpt: doc.content.substring(0, 300)
+      }));
+    }
     
-    // Search the database for similar documents
+    // Fallback to database search if corpus search returns nothing
+    const searchTerms = extractKeyTerms(sourceText);
     const results = await searchDocuments(searchTerms, {
       document_type: documentType !== "general" ? documentType : undefined
     });
