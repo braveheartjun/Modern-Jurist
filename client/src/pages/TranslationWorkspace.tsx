@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Upload, FileText, ScanLine, ArrowRight, CheckCircle2, ShieldCheck, Languages, Loader2 } from "lucide-react";
+import { Upload, FileText, ScanLine, ArrowRight, CheckCircle2, ShieldCheck, Languages, Loader2, BookOpen } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { GlossaryManager, CustomGlossary } from "@/components/GlossaryManager";
 
 // Mock data for demonstration
 const DEMO_TRANSLATIONS = {
@@ -38,6 +39,22 @@ export default function TranslationWorkspace() {
   const [step, setStep] = useState<"upload" | "processing" | "result">("upload");
   const [targetLang, setTargetLang] = useState("hindi");
   const [processingStage, setProcessingStage] = useState("");
+  
+  // Glossary State
+  const [glossaries, setGlossaries] = useState<CustomGlossary[]>([
+    {
+      id: "1",
+      name: "Real Estate Terms",
+      language: "Hindi",
+      terms: [
+        { source: "Grantor", target: "Dene Wala (Grantor)" },
+        { source: "Attorney", target: "Mukhtar (Attorney)" }
+      ],
+      active: true
+    }
+  ]);
+
+  const activeGlossaryCount = glossaries.filter(g => g.active).length;
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -55,7 +72,8 @@ export default function TranslationWorkspace() {
       { p: 10, msg: "Initializing Secure Environment..." },
       { p: 30, msg: "Scanning Document (OCR)..." },
       { p: 50, msg: "Analyzing Legal Context..." },
-      { p: 70, msg: "Mapping Clauses & Terminology..." },
+      { p: 65, msg: "Mapping Clauses & Terminology..." },
+      { p: 80, msg: `Applying ${activeGlossaryCount} Custom Glossaries...` },
       { p: 90, msg: "Generating Draft..." },
       { p: 100, msg: "Finalizing..." }
     ];
@@ -87,6 +105,13 @@ export default function TranslationWorkspace() {
           <Badge variant="secondary" className="px-3 py-1">
             Engine: Senior Legal Translator v2.1
           </Badge>
+          <Separator orientation="vertical" className="h-6" />
+          <GlossaryManager glossaries={glossaries} onUpdateGlossaries={setGlossaries} />
+          {activeGlossaryCount > 0 && (
+            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+              {activeGlossaryCount} Active Glossaries
+            </Badge>
+          )}
         </div>
         <div className="flex gap-3">
            <Button variant="outline" size="sm" disabled={step !== "result"}>
