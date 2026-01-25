@@ -16,11 +16,16 @@ interface JuristToolkitProps {
 }
 
 interface ReferenceDoc {
+  id: string;
   title: string;
-  type: string;
+  document_type: string;
   source: string;
-  language: string;
-  file: string;
+  content_summary: string;
+  url?: string;
+  citation?: string;
+  subject?: string;
+  year?: string;
+  court?: string;
 }
 
 export function JuristToolkit({ glossaries, isOpen, onClose, selectedText }: JuristToolkitProps) {
@@ -36,18 +41,15 @@ export function JuristToolkit({ glossaries, isOpen, onClose, selectedText }: Jur
     }
   }, [selectedText]);
 
-  // Load reference documents
+  // Load reference documents from unified database
   useEffect(() => {
     const loadDocs = async () => {
       setLoadingDocs(true);
       try {
-        const res = await fetch("/data/database.json");
+        const res = await fetch("/data/unified_database.json");
         const data = await res.json();
-        const allDocs: ReferenceDoc[] = [];
-        Object.values(data.by_language).forEach((docs: any) => {
-          allDocs.push(...docs);
-        });
-        setReferenceDocs(allDocs);
+        // Use the unified database structure
+        setReferenceDocs(data.documents || []);
       } catch (err) {
         console.error("Failed to load reference docs", err);
       } finally {
@@ -59,7 +61,8 @@ export function JuristToolkit({ glossaries, isOpen, onClose, selectedText }: Jur
 
   const filteredDocs = referenceDocs.filter(doc => 
     doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    doc.type.toLowerCase().includes(searchQuery.toLowerCase())
+    doc.document_type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    doc.source.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const allTerms = glossaries.flatMap(g => g.terms);
@@ -150,11 +153,13 @@ export function JuristToolkit({ glossaries, isOpen, onClose, selectedText }: Jur
                       </div>
                       <div className="flex flex-wrap gap-2 mt-2">
                         <Badge variant="secondary" className="text-[10px] px-1.5 h-5">
-                          {doc.type}
+                          {doc.document_type}
                         </Badge>
-                        <Badge variant="outline" className="text-[10px] px-1.5 h-5 capitalize">
-                          {doc.language}
-                        </Badge>
+                        {doc.citation && (
+                          <Badge variant="outline" className="text-[10px] px-1.5 h-5">
+                            {doc.citation}
+                          </Badge>
+                        )}
                       </div>
                       <div className="text-[10px] text-muted-foreground mt-2 flex items-center gap-1">
                         <FileText className="h-3 w-3" />

@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { detectAndGenerateCitations } from "./citationGenerator";
 import { z } from "zod";
+import { searchDocuments, findByCitation, getDatabaseStats, getAllSources, getAllDocumentTypes } from "./databaseSearch";
 import { saveDocumentVersion, getDocumentVersions, getVersionById } from "./versionDb";
 import { generatePDFWithCitations } from "./pdfGenerator";
 import { saveTranslationPair, findSimilarTranslations } from "./translationMemoryDb";
@@ -158,12 +159,43 @@ export const appRouter = router({
       }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  // Database search and resource recall
+  database: router({
+    search: publicProcedure
+      .input(z.object({
+        query: z.string(),
+        filters: z.object({
+          source: z.string().optional(),
+          document_type: z.string().optional(),
+          year: z.string().optional(),
+          court: z.string().optional()
+        }).optional()
+      }))
+      .query(async ({ input }) => {
+        return await searchDocuments(input.query, input.filters);
+      }),
+    
+    findByCitation: publicProcedure
+      .input(z.object({ citation: z.string() }))
+      .query(async ({ input }) => {
+        return await findByCitation(input.citation);
+      }),
+    
+    stats: publicProcedure
+      .query(async () => {
+        return await getDatabaseStats();
+      }),
+    
+    sources: publicProcedure
+      .query(async () => {
+        return await getAllSources();
+      }),
+    
+    documentTypes: publicProcedure
+      .query(async () => {
+        return await getAllDocumentTypes();
+      })
+  }),
 });
 
 export type AppRouter = typeof appRouter;

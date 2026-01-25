@@ -51,3 +51,18 @@
 - [x] Update frontend to upload files to backend
 - [x] Replace demo content with real translated output
 - [x] Test translation with actual PDF and DOCX documents
+
+## Database Audit and Integration
+- [x] Check existing scraping scripts for all sources
+- [x] Verify database.json contains data from Indian Kanoon
+- [x] Verify database.json contains data from Supreme Court of India
+- [x] Verify database.json contains data from Ministry of Law and Justice
+- [x] Verify database.json contains data from CaseMine
+- [x] Verify database.json contains data from SCC Online
+- [x] Verify database.json contains data from India Code
+- [x] Execute missing scraping scripts to complete data collection
+- [x] Consolidate all scraped data with source attribution
+- [x] Implement efficient search and recall across all sources
+- [x] Test resource recall in translation workflow
+- [x] Test resource recall in citation generator
+- [x] Test resource recall in reference library
