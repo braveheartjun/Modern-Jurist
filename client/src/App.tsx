@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import DocumentExplorer from "./pages/DocumentExplorer";
 import Glossary from "./pages/Glossary";
 import Analysis from "./pages/Analysis";
+import TranslationWorkspace from "./pages/TranslationWorkspace";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/documents" component={DocumentExplorer} />
         <Route path="/glossary" component={Glossary} />
         <Route path="/analysis" component={Analysis} />
+        <Route path="/translate" component={TranslationWorkspace} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

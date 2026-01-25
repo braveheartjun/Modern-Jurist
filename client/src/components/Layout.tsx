@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { BookOpen, FileText, BarChart2, Search, Scale } from "lucide-react";
+import { BookOpen, FileText, BarChart2, Search, Scale, Languages } from "lucide-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -10,6 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { href: "/documents", label: "Document Explorer", icon: FileText },
     { href: "/glossary", label: "Terminology Glossary", icon: BookOpen },
     { href: "/analysis", label: "Language Analysis", icon: Search },
+    { href: "/translate", label: "Translation Workspace", icon: Languages },
   ];
 
   return (
