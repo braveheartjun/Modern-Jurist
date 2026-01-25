@@ -210,3 +210,12 @@
 - [x] Ensure PDF properly handles page breaks
 - [x] Test download with multiple different documents
 - [x] Verify each download contains the correct current translation (server generates PDF successfully)
+
+## LinkedIn Post and Demo Video
+- [ ] Record 1-minute demo video showing key features
+- [ ] Demonstrate document upload and translation workflow
+- [ ] Show side-by-side comparison view with transliteration
+- [ ] Highlight quality scoring and download options
+- [ ] Write engaging LinkedIn post with use case description
+- [ ] Export demo video in LinkedIn-friendly format
+- [ ] Deliver LinkedIn post text and demo video

@@ -25,7 +25,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
-import { QualityScorePanel } from "@/components/QualityScorePanel";
+
 
 interface SideBySideEditorProps {
   sourceText: string;
@@ -35,16 +35,7 @@ interface SideBySideEditorProps {
   onTranslatedTextChange: (text: string) => void;
   documentTitle?: string;
   citations?: any[];
-  qualityScore?: {
-    overall: number;
-    confidence: "high" | "medium" | "low";
-    factors: {
-      terminologyMatch: number;
-      corpusSimilarity: number;
-      complexity: number;
-    };
-    details: string;
-  };
+
 }
 
 export function SideBySideEditor({
@@ -54,8 +45,7 @@ export function SideBySideEditor({
   targetLang,
   onTranslatedTextChange,
   documentTitle = "Legal Document",
-  citations = [],
-  qualityScore
+  citations = []
 }: SideBySideEditorProps) {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -205,21 +195,7 @@ export function SideBySideEditor({
               <CheckCircle2 className="w-3 h-3" /> Translation Complete
             </Badge>
             
-            {qualityScore && (
-              <Badge 
-                variant="outline" 
-                className={
-                  qualityScore.confidence === "high" 
-                    ? "bg-green-50 text-green-700 border-green-200" 
-                    : qualityScore.confidence === "medium"
-                    ? "bg-yellow-50 text-yellow-700 border-yellow-200"
-                    : "bg-red-50 text-red-700 border-red-200"
-                }
-                title={qualityScore.details}
-              >
-                Quality: {qualityScore.overall}% ({qualityScore.confidence})
-              </Badge>
-            )}
+
             
             {lastSaved && (
               <span className="text-xs text-muted-foreground">
@@ -301,12 +277,7 @@ export function SideBySideEditor({
           </div>
         </div>
 
-        {/* Quality Score Panel */}
-        {qualityScore && (
-          <div className="border-b p-3 bg-muted/10">
-            <QualityScorePanel qualityScore={qualityScore} />
-          </div>
-        )}
+
 
         {/* Side-by-Side Content */}
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x overflow-hidden">

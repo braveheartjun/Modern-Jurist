@@ -111,7 +111,7 @@ export const appRouter = router({
           filename: z.string(),
           sourceLang: z.string(),
           targetLang: z.string(),
-          customGlossary: z.array(z.object({ source: z.string(), target: z.string() })).optional(),
+
           documentType: z.string().optional(),
         })
       )
@@ -135,12 +135,6 @@ export const appRouter = router({
           translatedText: result.translatedText,
           confidence: result.confidence,
           documentType: type,
-          qualityScore: { 
-            overall: result.confidence, 
-            confidence: result.confidence >= 80 ? 'high' as const : result.confidence >= 60 ? 'medium' as const : 'low' as const,
-            factors: { terminologyMatch: 0, corpusSimilarity: 0, complexity: 0 },
-            details: `Translation confidence: ${result.confidence}%`
-          },
         };
       }),
   }),

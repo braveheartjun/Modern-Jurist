@@ -9,8 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { GlossaryManager, CustomGlossary } from "@/components/GlossaryManager";
-import { JuristToolkit } from "@/components/JuristToolkit";
+
 import { CollaborativeEditor } from "@/components/CollaborativeEditor";
 import { CitationSuggestions, Citation } from "@/components/CitationSuggestions";
 import { VersionHistory } from "@/components/VersionHistory";
@@ -48,24 +47,14 @@ export default function TranslationWorkspace() {
   const [step, setStep] = useState<"upload" | "processing" | "result">("upload");
   const [targetLang, setTargetLang] = useState("hindi");
   const [processingStage, setProcessingStage] = useState("");
-  const [isToolkitOpen, setIsToolkitOpen] = useState(false);
-  const [selectedText, setSelectedText] = useState("");
+
   const [translatedContent, setTranslatedContent] = useState("");
   const [showCitations, setShowCitations] = useState(false);
   const [showVersionHistory, setShowVersionHistory] = useState(false);
   const [showTranslationMemory, setShowTranslationMemory] = useState(false);
   const [acceptedCitations, setAcceptedCitations] = useState<Citation[]>([]);
   const [sourceText, setSourceText] = useState("");
-  const [qualityScore, setQualityScore] = useState<{
-    overall: number;
-    confidence: "high" | "medium" | "low";
-    factors: {
-      terminologyMatch: number;
-      corpusSimilarity: number;
-      complexity: number;
-    };
-    details: string;
-  } | null>(null);
+
   
   // Mock current user for collaboration
   const currentUser = {
@@ -74,21 +63,7 @@ export default function TranslationWorkspace() {
     color: "#3b82f6",
   };
   
-  // Glossary State
-  const [glossaries, setGlossaries] = useState<CustomGlossary[]>([
-    {
-      id: "1",
-      name: "Real Estate Terms",
-      language: "Hindi",
-      terms: [
-        { source: "Grantor", target: "Dene Wala (Grantor)" },
-        { source: "Attorney", target: "Mukhtar (Attorney)" }
-      ],
-      active: true
-    }
-  ]);
 
-  const activeGlossaryCount = glossaries.filter(g => g.active).length;
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -100,7 +75,6 @@ export default function TranslationWorkspace() {
       setProcessingStage("");
       setTranslatedContent("");
       setSourceText("");
-      setQualityScore(null);
       setAcceptedCitations([]);
       setShowCitations(false);
       setShowVersionHistory(false);
@@ -112,7 +86,6 @@ export default function TranslationWorkspace() {
     onSuccess: (data) => {
       setSourceText(data.sourceText);
       setTranslatedContent(data.translatedText);
-      setQualityScore(data.qualityScore || null);
       setIsProcessing(false);
       setStep("result");
       setProgress(100);
@@ -161,10 +134,7 @@ export default function TranslationWorkspace() {
           setProgress(20);
           setProcessingStage("Extracting text from document...");
 
-          // Prepare custom glossary
-          const customGlossary = glossaries
-            .filter((g) => g.active)
-            .flatMap((g) => g.terms);
+
 
           setProgress(40);
           setProcessingStage("Translating with legal terminology...");
@@ -173,7 +143,7 @@ export default function TranslationWorkspace() {
             filename: file.name,
             sourceLang: "English",
             targetLang: targetLang === "hindi" ? "Hindi" : targetLang === "marathi" ? "Marathi" : targetLang === "gujarati" ? "Gujarati" : "Kannada",
-            hasGlossary: customGlossary.length > 0,
+
             documentType: "Legal Document",
           });
 
@@ -183,7 +153,7 @@ export default function TranslationWorkspace() {
             filename: file.name,
             sourceLang: "English",
             targetLang: targetLang === "hindi" ? "Hindi" : targetLang === "marathi" ? "Marathi" : targetLang === "gujarati" ? "Gujarati" : "Kannada",
-            customGlossary: customGlossary.length > 0 ? customGlossary : undefined,
+
             documentType: "Legal Document",
           });
 
@@ -252,13 +222,7 @@ export default function TranslationWorkspace() {
           <Badge variant="secondary" className="px-2 py-1 text-xs md:text-sm md:px-3">
             v2.1
           </Badge>
-          <Separator orientation="vertical" className="h-6 hidden md:block" />
-          <GlossaryManager glossaries={glossaries} onUpdateGlossaries={setGlossaries} />
-          {activeGlossaryCount > 0 && (
-            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
-              {activeGlossaryCount} Active
-            </Badge>
-          )}
+
         </div>
         <div className="flex gap-2 w-full md:w-auto flex-wrap">
            <Button
@@ -292,15 +256,13 @@ export default function TranslationWorkspace() {
                size="sm"
              />
            ) : null}
-           <Button variant="ghost" size="icon" className="hidden md:flex" onClick={() => setIsToolkitOpen(!isToolkitOpen)}>
-             {isToolkitOpen ? <PanelRightClose className="h-4 w-4" /> : <PanelRightOpen className="h-4 w-4" />}
-           </Button>
+
         </div>
       </div>
 
       {/* Main Workspace */}
       <div className="flex gap-6 flex-1 min-h-0 relative">
-        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 transition-all duration-300 ${isToolkitOpen ? 'mr-80' : ''}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 transition-all duration-300">
         
         {/* Left Panel: Source / Controls */}
         <div className="lg:col-span-4 space-y-6">
@@ -444,7 +406,6 @@ export default function TranslationWorkspace() {
                 onTranslatedTextChange={setTranslatedContent}
                 documentTitle={targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : DEMO_TRANSLATIONS.marathi.title}
                 citations={acceptedCitations}
-                qualityScore={qualityScore || undefined}
               />
             )}
 
@@ -531,12 +492,7 @@ export default function TranslationWorkspace() {
         </div>
       </div>
       
-      <JuristToolkit 
-        glossaries={glossaries} 
-        isOpen={isToolkitOpen} 
-        onClose={() => setIsToolkitOpen(false)}
-        selectedText={selectedText}
-      />
+
 
       {/* Version History Panel */}
       {showVersionHistory && (

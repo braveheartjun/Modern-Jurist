@@ -2,13 +2,13 @@ import { invokeLLM } from "./_core/llm";
 import { translateLegalDocument, detectDocumentType } from "./contextAwareTranslation";
 import { searchDocuments } from "./databaseSearch";
 import { searchCorpus } from "./corpusSearch";
-import { analyzeDocumentQuality, getDocumentQualityScore, type SectionScore } from "./qualityScoring";
+
 
 interface TranslationOptions {
   sourceText: string;
   sourceLang: string;
   targetLang: string;
-  customGlossary?: Array<{ source: string; target: string }>;
+
   documentType?: string;
 }
 
@@ -20,19 +20,9 @@ export async function translateDocument(
 ): Promise<{ 
   translatedText: string; 
   confidence: number;
-  qualityScore?: {
-    overall: number;
-    confidence: "high" | "medium" | "low";
-    factors: {
-      terminologyMatch: number;
-      corpusSimilarity: number;
-      complexity: number;
-    };
-    details: string;
-    sections?: SectionScore[];
-  };
+
 }> {
-  const { sourceText, sourceLang, targetLang, customGlossary, documentType } = options;
+  const { sourceText, sourceLang, targetLang, documentType } = options;
 
   // Detect document type if not provided
   const detectedType = documentType || detectDocumentType(sourceText);
@@ -40,13 +30,7 @@ export async function translateDocument(
   // Search for similar documents in the corpus for context
   const corpusExamples = await findCorpusExamples(sourceText, sourceLang, targetLang, detectedType);
 
-  // Build custom glossary context
-  let glossaryContext = "";
-  if (customGlossary && customGlossary.length > 0) {
-    glossaryContext = `\n\n**Custom Terminology (MUST use these exact translations):**\n${customGlossary
-      .map((term) => `- "${term.source}" → "${term.target}"`)
-      .join("\n")}`;
-  }
+
 
   // Build corpus context from similar documents
   let corpusContext = "";
@@ -66,33 +50,14 @@ export async function translateDocument(
       detectedType
     );
 
-    // Apply custom glossary replacements if provided
-    if (customGlossary && customGlossary.length > 0) {
-      translatedText = applyCustomGlossary(translatedText, customGlossary, sourceLang, targetLang);
-    }
+
 
     // Calculate confidence based on response quality indicators
     const confidence = calculateConfidence(translatedText, sourceText);
 
-    // Analyze translation quality with detailed scoring
-    const sectionScores = analyzeDocumentQuality(
-      sourceText,
-      translatedText,
-      sourceLang,
-      targetLang,
-      customGlossary?.length || 0,
-      corpusExamples.length
-    );
-
-    const qualityScore = getDocumentQualityScore(sectionScores);
-
     return {
       translatedText,
-      confidence,
-      qualityScore: {
-        ...qualityScore,
-        sections: sectionScores
-      }
+      confidence
     };
   } catch (error) {
     console.error("[Translation Service] Error:", error);
@@ -152,26 +117,7 @@ function extractKeyTerms(text: string): string {
   return words.join(" ");
 }
 
-/**
- * Apply custom glossary replacements to translated text
- */
-function applyCustomGlossary(
-  text: string,
-  glossary: Array<{ source: string; target: string }>,
-  sourceLang: string,
-  targetLang: string
-): string {
-  let result = text;
-  
-  // Apply each glossary term replacement
-  for (const term of glossary) {
-    // Create regex for case-insensitive matching
-    const regex = new RegExp(term.source, "gi");
-    result = result.replace(regex, term.target);
-  }
-  
-  return result;
-}
+
 
 /**
  * Calculate translation confidence score (0-100)
@@ -209,16 +155,6 @@ export async function translateLargeDocument(
 ): Promise<{ 
   translatedText: string; 
   confidence: number;
-  qualityScore?: {
-    overall: number;
-    confidence: "high" | "medium" | "low";
-    factors: {
-      terminologyMatch: number;
-      corpusSimilarity: number;
-      complexity: number;
-    };
-    details: string;
-  };
 }> {
   const { sourceText } = options;
   const maxChunkSize = 3000; // characters per chunk
