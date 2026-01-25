@@ -17,6 +17,7 @@ import { VersionHistory } from "@/components/VersionHistory";
 import { DownloadPDFButton } from "@/components/DownloadPDFButton";
 import { TranslationMemorySuggestions } from "@/components/TranslationMemorySuggestions";
 import { PanelRightOpen, PanelRightClose, Users, History, Brain, X } from "lucide-react";
+import { SideBySideEditor } from "@/components/SideBySideEditor";
 
 // Mock data for demonstration
 const DEMO_TRANSLATIONS = {
@@ -376,6 +377,19 @@ export default function TranslationWorkspace() {
             )}
 
             {step === "result" && (
+              <SideBySideEditor
+                sourceText={sourceText || "GENERAL POWER OF ATTORNEY\n\nKNOW ALL MEN BY THESE PRESENTS that we, the Legal Heirs of Late Shri Premnath Sharma...\n\n1. Grantors: [List of Names]\n2. Attorney: Mr. Dev Premnath Sharma\n\nWHEREAS the Grantors have relinquished and transferred all their rights and interests..."}
+                translatedText={translatedContent || (targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.content : "Translation content generated based on the selected language model...")}
+                sourceLang="English"
+                targetLang={targetLang === 'hindi' ? 'Hindi' : targetLang === 'marathi' ? 'Marathi' : targetLang === 'gujarati' ? 'Gujarati' : 'Kannada'}
+                onTranslatedTextChange={setTranslatedContent}
+                documentTitle={targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : DEMO_TRANSLATIONS.marathi.title}
+                citations={acceptedCitations}
+              />
+            )}
+
+            {/* Old result view - keeping for reference but commented out */}
+            {false && step === "result" && (
               <div className="flex flex-col h-full">
                 <div className="border-b p-3 flex flex-col md:flex-row justify-between items-start md:items-center bg-muted/20 gap-2">
                   <div className="flex items-center gap-3">

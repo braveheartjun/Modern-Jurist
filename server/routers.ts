@@ -7,6 +7,7 @@ import { z } from "zod";
 import { searchDocuments, findByCitation, getDatabaseStats, getAllSources, getAllDocumentTypes } from "./databaseSearch";
 import { saveDocumentVersion, getDocumentVersions, getVersionById } from "./versionDb";
 import { generatePDFWithCitations } from "./pdfGenerator";
+import { generateDOCX } from "./docxGenerator";
 import { saveTranslationPair, findSimilarTranslations } from "./translationMemoryDb";
 import { processDocument } from "./documentProcessor";
 import { translateLargeDocument } from "./translationService";
@@ -80,6 +81,24 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const pdfBuffer = await generatePDFWithCitations(input);
         return { pdf: pdfBuffer.toString("base64") };
+      }),
+  }),
+
+  // DOCX generation
+  docx: router({
+    generateWithCitations: publicProcedure
+      .input(
+        z.object({
+          title: z.string(),
+          content: z.string(),
+          citations: z.array(z.any()),
+          sourceLang: z.string(),
+          targetLang: z.string(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const docxBuffer = await generateDOCX(input);
+        return { docx: docxBuffer.toString("base64") };
       }),
   }),
 
