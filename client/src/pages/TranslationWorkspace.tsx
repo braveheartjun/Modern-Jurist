@@ -3,14 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Upload, FileText, ScanLine, ArrowRight, CheckCircle2, ShieldCheck, Languages, Loader2, BookOpen } from "lucide-react";
+import { Upload, FileText, ScanLine, ArrowRight, CheckCircle2, ShieldCheck, Languages, Loader2, BookOpen, Sparkles } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { GlossaryManager, CustomGlossary } from "@/components/GlossaryManager";
 import { JuristToolkit } from "@/components/JuristToolkit";
-import { PanelRightOpen, PanelRightClose } from "lucide-react";
+import { CollaborativeEditor } from "@/components/CollaborativeEditor";
+import { CitationSuggestions, Citation } from "@/components/CitationSuggestions";
+import { PanelRightOpen, PanelRightClose, Users } from "lucide-react";
 
 // Mock data for demonstration
 const DEMO_TRANSLATIONS = {
@@ -43,6 +45,15 @@ export default function TranslationWorkspace() {
   const [processingStage, setProcessingStage] = useState("");
   const [isToolkitOpen, setIsToolkitOpen] = useState(false);
   const [selectedText, setSelectedText] = useState("");
+  const [translatedContent, setTranslatedContent] = useState("");
+  const [showCitations, setShowCitations] = useState(false);
+  
+  // Mock current user for collaboration
+  const currentUser = {
+    id: "user-" + Math.random().toString(36).substring(7),
+    name: "Legal Translator",
+    color: "#3b82f6",
+  };
   
   // Glossary State
   const [glossaries, setGlossaries] = useState<CustomGlossary[]>([
@@ -94,6 +105,16 @@ export default function TranslationWorkspace() {
       setProcessingStage(stages[currentStage].msg);
       currentStage++;
     }, 800);
+  };
+
+  const handleCitationAccept = (citation: Citation) => {
+    // Insert citation into the translated content
+    const newContent = translatedContent + "\n\n" + citation.suggestedCitation;
+    setTranslatedContent(newContent);
+  };
+
+  const handleCitationDismiss = (citationId: string) => {
+    console.log("Citation dismissed:", citationId);
   };
 
   return (
@@ -308,35 +329,43 @@ export default function TranslationWorkspace() {
                     </ScrollArea>
                   </div>
 
-                  {/* Translated Output */}
+                  {/* Translated Output with Collaborative Editing */}
                   <div className="flex flex-col h-full bg-background">
                     <div className="p-3 border-b bg-primary/5 flex justify-between items-center">
                       <h4 className="text-xs font-bold text-primary uppercase tracking-wider">
                         Translated ({targetLang === 'hindi' ? 'Hindi' : targetLang === 'marathi' ? 'Marathi' : 'Target'})
                       </h4>
-                      <Badge variant="secondary" className="text-[10px]">Draft v1.0</Badge>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          size="sm"
+                          variant={showCitations ? "secondary" : "outline"}
+                          onClick={() => setShowCitations(!showCitations)}
+                          className="text-xs h-7"
+                        >
+                          <Sparkles className="mr-1 h-3 w-3" />
+                          Citations
+                        </Button>
+                        <Badge variant="secondary" className="text-[10px]">Draft v1.0</Badge>
+                      </div>
                     </div>
                     <ScrollArea className="flex-1 p-4 md:p-6">
-                      <div 
-                        className="space-y-6 text-sm font-serif leading-loose text-foreground max-w-prose mx-auto selection:bg-primary/20 selection:text-primary"
-                        onMouseUp={() => {
-                          const selection = window.getSelection();
-                          if (selection && selection.toString().trim().length > 0) {
-                            setSelectedText(selection.toString().trim());
-                            if (!isToolkitOpen) setIsToolkitOpen(true);
-                          }
-                        }}
-                      >
-                        <div className="text-center font-bold text-lg border-b pb-4 mb-4 text-primary cursor-text">
-                          {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : 
-                           targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.title : 
-                           "Translation Preview"}
-                        </div>
-                        <div className="whitespace-pre-wrap cursor-text">
-                          {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : 
-                           targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.content : 
-                           "Translation content generated based on the selected language model..."}
-                        </div>
+                      <div className="max-w-prose mx-auto space-y-4">
+                        <CollaborativeEditor
+                          value={translatedContent || (targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.content : "Translation content generated based on the selected language model...")}
+                          onChange={setTranslatedContent}
+                          documentId="translation-doc-1"
+                          currentUser={currentUser}
+                          placeholder="Translated content will appear here..."
+                          className="min-h-[400px] font-serif text-sm leading-loose"
+                        />
+                        
+                        {showCitations && (
+                          <CitationSuggestions
+                            text={translatedContent || (targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : DEMO_TRANSLATIONS.marathi.content)}
+                            onAccept={handleCitationAccept}
+                            onDismiss={handleCitationDismiss}
+                          />
+                        )}
                       </div>
                     </ScrollArea>
                   </div>

@@ -10,8 +10,8 @@ import DocumentExplorer from "./pages/DocumentExplorer";
 import Glossary from "./pages/Glossary";
 import Analysis from "./pages/Analysis";
 import TranslationWorkspace from "./pages/TranslationWorkspace";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
