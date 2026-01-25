@@ -194,3 +194,11 @@
 - [x] Create new clean, professional interface design (Home_NEW.tsx created)
 - [x] Implement simplified upload flow
 - [x] Test end-to-end with multiple document types (text file tested successfully)
+
+## Enhanced Side-by-Side Comparison View
+- [x] Make side-by-side view more prominent and focused
+- [x] Add synchronized scrolling between original and translated panels
+- [x] Improve visual separation between panels
+- [x] Add toggle button to enable/disable synchronized scrolling
+- [x] Test synchronized scrolling with long documents (working perfectly)
+- [x] Verify comparison view works on different screen sizes (responsive design)

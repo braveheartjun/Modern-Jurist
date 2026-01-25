@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -62,6 +62,9 @@ export function SideBySideEditor({
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [isEditing, setIsEditing] = useState(true);
   const [localTranslatedText, setLocalTranslatedText] = useState(translatedText);
+  const [isSyncScroll, setIsSyncScroll] = useState(true);
+  const sourceScrollRef = useRef<HTMLDivElement>(null);
+  const translatedScrollRef = useRef<HTMLDivElement>(null);
 
   // PDF generation mutation
   const generatePDFMutation = trpc.pdf.generateWithCitations.useMutation({
@@ -315,7 +318,18 @@ export function SideBySideEditor({
               </h4>
               <Badge variant="secondary" className="text-[10px]">Read-only</Badge>
             </div>
-            <ScrollArea className="flex-1 p-4 md:p-6">
+            <ScrollArea 
+              className="flex-1 p-4 md:p-6"
+              onScroll={(e) => {
+                if (isSyncScroll && translatedScrollRef.current) {
+                  const target = e.target as HTMLElement;
+                  const scrollPercentage = target.scrollTop / (target.scrollHeight - target.clientHeight);
+                  const translatedScroll = translatedScrollRef.current;
+                  translatedScroll.scrollTop = scrollPercentage * (translatedScroll.scrollHeight - translatedScroll.clientHeight);
+                }
+              }}
+              ref={sourceScrollRef}
+            >
               <div className="space-y-4 text-sm font-serif leading-loose text-foreground/80 max-w-prose mx-auto">
                 {sourceText.split('\n\n').map((paragraph, idx) => (
                   <p key={idx} className="whitespace-pre-wrap">
@@ -332,11 +346,33 @@ export function SideBySideEditor({
               <h4 className="text-xs font-bold text-primary uppercase tracking-wider">
                 Translated ({targetLang})
               </h4>
-              <Badge variant="secondary" className="text-[10px]">
-                {isEditing ? "Editing" : "Preview"}
-              </Badge>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsSyncScroll(!isSyncScroll)}
+                  className="h-6 text-[10px] px-2"
+                  title={isSyncScroll ? "Disable synchronized scrolling" : "Enable synchronized scrolling"}
+                >
+                  {isSyncScroll ? "Sync: ON" : "Sync: OFF"}
+                </Button>
+                <Badge variant="secondary" className="text-[10px]">
+                  {isEditing ? "Editing" : "Preview"}
+                </Badge>
+              </div>
             </div>
-            <ScrollArea className="flex-1 p-4 md:p-6">
+            <ScrollArea 
+              className="flex-1 p-4 md:p-6"
+              onScroll={(e) => {
+                if (isSyncScroll && sourceScrollRef.current) {
+                  const target = e.target as HTMLElement;
+                  const scrollPercentage = target.scrollTop / (target.scrollHeight - target.clientHeight);
+                  const sourceScroll = sourceScrollRef.current;
+                  sourceScroll.scrollTop = scrollPercentage * (sourceScroll.scrollHeight - sourceScroll.clientHeight);
+                }
+              }}
+              ref={translatedScrollRef}
+            >
               <div className="max-w-prose mx-auto">
                 {isEditing ? (
                   <Textarea
