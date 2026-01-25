@@ -224,15 +224,17 @@ export default function TranslationWorkspace() {
              <Brain className="mr-2 h-4 w-4" />
              Memory
            </Button>
-           <DownloadPDFButton
-             title={targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : DEMO_TRANSLATIONS.marathi.title}
-             content={translatedContent || (targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : DEMO_TRANSLATIONS.marathi.content)}
-             citations={acceptedCitations}
-             sourceLang="English"
-             targetLang={targetLang}
-             variant="outline"
-             size="sm"
-           />
+           {acceptedCitations.length > 0 ? (
+             <DownloadPDFButton
+               title={targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : DEMO_TRANSLATIONS.marathi.title}
+               content={translatedContent || (targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : DEMO_TRANSLATIONS.marathi.content)}
+               citations={acceptedCitations}
+               sourceLang="English"
+               targetLang={targetLang}
+               variant="outline"
+               size="sm"
+             />
+           ) : null}
            <Button variant="ghost" size="icon" className="hidden md:flex" onClick={() => setIsToolkitOpen(!isToolkitOpen)}>
              {isToolkitOpen ? <PanelRightClose className="h-4 w-4" /> : <PanelRightOpen className="h-4 w-4" />}
            </Button>

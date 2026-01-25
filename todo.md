@@ -112,3 +112,8 @@
 - [x] Add accessibility features (ARIA labels, keyboard navigation)
 - [x] Create smooth transitions and animations
 - [ ] Test on mobile devices for responsive behavior
+
+## Download Button Improvements
+- [x] Update download button to show "Download with Citations" only when citations exist
+- [x] Show regular "Download" button with format options when no citations
+- [x] Test both scenarios (with and without citations)

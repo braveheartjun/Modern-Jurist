@@ -239,17 +239,17 @@ export function SideBySideEditor({
               <DropdownMenuTrigger asChild>
                 <Button variant="default" size="sm">
                   <Download className="h-4 w-4 mr-1" />
-                  Download
+                  {citations.length > 0 ? "Download with Citations" : "Download"}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={handleDownloadPDF} disabled={generatePDFMutation.isPending}>
                   <FileText className="h-4 w-4 mr-2" />
-                  Download as PDF
+                  {citations.length > 0 ? "PDF with Citations" : "Download as PDF"}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleDownloadDOCX} disabled={generateDOCXMutation.isPending}>
                   <FileText className="h-4 w-4 mr-2" />
-                  {generateDOCXMutation.isPending ? "Generating DOCX..." : "Download as DOCX"}
+                  {generateDOCXMutation.isPending ? "Generating..." : citations.length > 0 ? "DOCX with Citations" : "Download as DOCX"}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
