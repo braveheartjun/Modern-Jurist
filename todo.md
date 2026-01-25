@@ -125,3 +125,10 @@
 - [ ] Test document upload and translation with PDF files
 - [ ] Test document upload and translation with DOCX files
 - [x] Verify error handling works correctly
+
+## Debug Translation Failure
+- [x] Check browser console logs for specific error messages
+- [x] Check server logs for API errors
+- [x] Verify LLM API is accessible and working
+- [x] Test with a simple text file to isolate the issue
+- [x] Fix the identified root cause (__dirname not defined in ES modules)
