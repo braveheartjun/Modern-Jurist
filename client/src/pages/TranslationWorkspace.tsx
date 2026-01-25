@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { GlossaryManager, CustomGlossary } from "@/components/GlossaryManager";
+import { JuristToolkit } from "@/components/JuristToolkit";
+import { PanelRightOpen, PanelRightClose } from "lucide-react";
 
 // Mock data for demonstration
 const DEMO_TRANSLATIONS = {
@@ -39,6 +41,8 @@ export default function TranslationWorkspace() {
   const [step, setStep] = useState<"upload" | "processing" | "result">("upload");
   const [targetLang, setTargetLang] = useState("hindi");
   const [processingStage, setProcessingStage] = useState("");
+  const [isToolkitOpen, setIsToolkitOpen] = useState(false);
+  const [selectedText, setSelectedText] = useState("");
   
   // Glossary State
   const [glossaries, setGlossaries] = useState<CustomGlossary[]>([
@@ -121,11 +125,21 @@ export default function TranslationWorkspace() {
            <Button size="sm" disabled={step !== "result"} className="flex-1 md:flex-none">
              DOCX
            </Button>
+           <Separator orientation="vertical" className="h-6 hidden md:block" />
+           <Button 
+             variant={isToolkitOpen ? "secondary" : "outline"} 
+             size="icon" 
+             onClick={() => setIsToolkitOpen(!isToolkitOpen)}
+             title="Toggle Jurist Toolkit"
+           >
+             {isToolkitOpen ? <PanelRightClose className="h-4 w-4" /> : <PanelRightOpen className="h-4 w-4" />}
+           </Button>
         </div>
       </div>
 
       {/* Main Workspace */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+      <div className="flex gap-6 flex-1 min-h-0 relative">
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 transition-all duration-300 ${isToolkitOpen ? 'mr-80' : ''}`}>
         
         {/* Left Panel: Source / Controls */}
         <div className="lg:col-span-4 space-y-6">
@@ -303,13 +317,22 @@ export default function TranslationWorkspace() {
                       <Badge variant="secondary" className="text-[10px]">Draft v1.0</Badge>
                     </div>
                     <ScrollArea className="flex-1 p-4 md:p-6">
-                      <div className="space-y-6 text-sm font-serif leading-loose text-foreground max-w-prose mx-auto">
-                        <div className="text-center font-bold text-lg border-b pb-4 mb-4 text-primary">
+                      <div 
+                        className="space-y-6 text-sm font-serif leading-loose text-foreground max-w-prose mx-auto selection:bg-primary/20 selection:text-primary"
+                        onMouseUp={() => {
+                          const selection = window.getSelection();
+                          if (selection && selection.toString().trim().length > 0) {
+                            setSelectedText(selection.toString().trim());
+                            if (!isToolkitOpen) setIsToolkitOpen(true);
+                          }
+                        }}
+                      >
+                        <div className="text-center font-bold text-lg border-b pb-4 mb-4 text-primary cursor-text">
                           {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : 
                            targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.title : 
                            "Translation Preview"}
                         </div>
-                        <div className="whitespace-pre-wrap">
+                        <div className="whitespace-pre-wrap cursor-text">
                           {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : 
                            targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.content : 
                            "Translation content generated based on the selected language model..."}
@@ -324,6 +347,14 @@ export default function TranslationWorkspace() {
           </Card>
         </div>
       </div>
+      
+      <JuristToolkit 
+        glossaries={glossaries} 
+        isOpen={isToolkitOpen} 
+        onClose={() => setIsToolkitOpen(false)}
+        selectedText={selectedText}
+      />
+    </div>
     </div>
   );
 }
