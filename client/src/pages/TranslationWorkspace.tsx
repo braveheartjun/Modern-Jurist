@@ -75,25 +75,32 @@ export default function TranslationWorkspace() {
   };
 
   return (
-    <div className="container max-w-6xl py-8 space-y-8 animate-in fade-in duration-500">
-      {/* Header */}
-      <div className="flex justify-between items-end border-b border-border pb-6">
-        <div>
-          <h1 className="text-3xl font-serif font-bold text-primary tracking-tight">Translation Workspace</h1>
-          <p className="text-muted-foreground mt-2 flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-green-600" />
-            Secure Environment • End-to-End Encrypted
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Badge variant="outline" className="px-3 py-1 bg-background">
+    <div className="container max-w-[1600px] py-6 space-y-6 animate-in fade-in duration-500 h-[calc(100vh-5rem)] flex flex-col">
+      {/* Toolbar */}
+      <div className="flex justify-between items-center bg-card border rounded-lg p-4 shadow-sm">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="h-5 w-5 text-green-600" />
+            <span className="text-sm font-medium text-muted-foreground">Secure Environment</span>
+          </div>
+          <Separator orientation="vertical" className="h-6" />
+          <Badge variant="secondary" className="px-3 py-1">
             Engine: Senior Legal Translator v2.1
           </Badge>
+        </div>
+        <div className="flex gap-3">
+           <Button variant="outline" size="sm" disabled={step !== "result"}>
+             <FileText className="mr-2 h-4 w-4" />
+             Export PDF
+           </Button>
+           <Button size="sm" disabled={step !== "result"}>
+             Download DOCX
+           </Button>
         </div>
       </div>
 
       {/* Main Workspace */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-[600px]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
         
         {/* Left Panel: Source / Controls */}
         <div className="lg:col-span-4 space-y-6">
@@ -230,46 +237,53 @@ export default function TranslationWorkspace() {
 
             {step === "result" && (
               <div className="flex flex-col h-full">
-                <div className="border-b p-4 flex justify-between items-center bg-muted/30">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                      Translation Complete
+                <div className="border-b p-3 flex justify-between items-center bg-muted/20">
+                  <div className="flex items-center gap-3">
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" /> Translation Complete
                     </Badge>
-                    <span className="text-sm text-muted-foreground">Confidence Score: 98%</span>
+                    <span className="text-xs text-muted-foreground font-medium">Confidence Score: 98%</span>
                   </div>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm">Download PDF</Button>
-                    <Button variant="outline" size="sm">Download DOCX</Button>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                    Legal Terminology Verified
                   </div>
                 </div>
                 
-                <div className="flex-1 grid grid-cols-2 divide-x">
+                <div className="flex-1 grid grid-cols-2 divide-x h-full overflow-hidden">
                   {/* Source Preview */}
-                  <div className="p-6 bg-muted/10">
-                    <h4 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">Original (English)</h4>
-                    <ScrollArea className="h-[500px] pr-4">
-                      <div className="space-y-4 text-sm font-serif leading-relaxed opacity-80">
-                        <p><strong>GENERAL POWER OF ATTORNEY</strong></p>
+                  <div className="flex flex-col h-full bg-muted/5">
+                    <div className="p-3 border-b bg-muted/10 flex justify-between items-center">
+                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Original Document (English)</h4>
+                    </div>
+                    <ScrollArea className="flex-1 p-6">
+                      <div className="space-y-6 text-sm font-serif leading-loose text-foreground/80 max-w-prose mx-auto">
+                        <div className="text-center font-bold text-lg border-b pb-4 mb-4">GENERAL POWER OF ATTORNEY</div>
                         <p>KNOW ALL MEN BY THESE PRESENTS that we, the Legal Heirs of Late Shri Premnath Sharma...</p>
-                        <p>1. Grantors: [List of Names]</p>
-                        <p>2. Attorney: Mr. Dev Premnath Sharma</p>
+                        <div className="pl-4 border-l-2 border-muted-foreground/20 my-4">
+                          <p>1. Grantors: [List of Names]</p>
+                          <p>2. Attorney: Mr. Dev Premnath Sharma</p>
+                        </div>
                         <p>WHEREAS the Grantors have relinquished and transferred all their rights and interests...</p>
                       </div>
                     </ScrollArea>
                   </div>
 
                   {/* Translated Output */}
-                  <div className="p-6 bg-background">
-                    <h4 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
-                      Translated ({targetLang === 'hindi' ? 'Hindi' : targetLang === 'marathi' ? 'Marathi' : 'Target'})
-                    </h4>
-                    <ScrollArea className="h-[500px] pr-4">
-                      <div className="space-y-4 text-sm font-serif leading-relaxed">
-                        <p className="font-bold text-lg">
+                  <div className="flex flex-col h-full bg-background">
+                    <div className="p-3 border-b bg-primary/5 flex justify-between items-center">
+                      <h4 className="text-xs font-bold text-primary uppercase tracking-wider">
+                        Translated Output ({targetLang === 'hindi' ? 'Hindi' : targetLang === 'marathi' ? 'Marathi' : 'Target'})
+                      </h4>
+                      <Badge variant="secondary" className="text-[10px]">Draft v1.0</Badge>
+                    </div>
+                    <ScrollArea className="flex-1 p-6">
+                      <div className="space-y-6 text-sm font-serif leading-loose text-foreground max-w-prose mx-auto">
+                        <div className="text-center font-bold text-lg border-b pb-4 mb-4 text-primary">
                           {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : 
                            targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.title : 
                            "Translation Preview"}
-                        </p>
+                        </div>
                         <div className="whitespace-pre-wrap">
                           {targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : 
                            targetLang === 'marathi' ? DEMO_TRANSLATIONS.marathi.content : 

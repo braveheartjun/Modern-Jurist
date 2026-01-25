@@ -15,11 +15,7 @@ function Router() {
   return (
     <Layout>
       <Switch>
-        <Route path="/" component={Dashboard} />
-        <Route path="/documents" component={DocumentExplorer} />
-        <Route path="/glossary" component={Glossary} />
-        <Route path="/analysis" component={Analysis} />
-        <Route path="/translate" component={TranslationWorkspace} />
+        <Route path="/" component={TranslationWorkspace} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
