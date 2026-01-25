@@ -10,7 +10,7 @@ import { generatePDFWithCitations } from "./pdfGenerator";
 import { generateDOCX } from "./docxGenerator";
 import { saveTranslationPair, findSimilarTranslations } from "./translationMemoryDb";
 import { processDocument } from "./documentProcessor";
-import { translateLargeDocument } from "./translationService";
+import { translateDocument } from "./translationEngine";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -122,12 +122,11 @@ export const appRouter = router({
         // Extract text from document
         const { text: sourceText, type } = await processDocument(buffer, input.filename);
 
-        // Translate the extracted text
-        const result = await translateLargeDocument({
-          sourceText,
+        // Translate the extracted text using new engine
+        const result = await translateDocument({
+          text: sourceText,
           sourceLang: input.sourceLang,
           targetLang: input.targetLang,
-          customGlossary: input.customGlossary,
           documentType: input.documentType,
         });
 
@@ -136,7 +135,12 @@ export const appRouter = router({
           translatedText: result.translatedText,
           confidence: result.confidence,
           documentType: type,
-          qualityScore: result.qualityScore,
+          qualityScore: { 
+            overall: result.confidence, 
+            confidence: result.confidence >= 80 ? 'high' as const : result.confidence >= 60 ? 'medium' as const : 'low' as const,
+            factors: { terminologyMatch: 0, corpusSimilarity: 0, complexity: 0 },
+            details: `Translation confidence: ${result.confidence}%`
+          },
         };
       }),
   }),
