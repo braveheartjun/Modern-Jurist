@@ -12,7 +12,10 @@ import { GlossaryManager, CustomGlossary } from "@/components/GlossaryManager";
 import { JuristToolkit } from "@/components/JuristToolkit";
 import { CollaborativeEditor } from "@/components/CollaborativeEditor";
 import { CitationSuggestions, Citation } from "@/components/CitationSuggestions";
-import { PanelRightOpen, PanelRightClose, Users } from "lucide-react";
+import { VersionHistory } from "@/components/VersionHistory";
+import { DownloadPDFButton } from "@/components/DownloadPDFButton";
+import { TranslationMemorySuggestions } from "@/components/TranslationMemorySuggestions";
+import { PanelRightOpen, PanelRightClose, Users, History, Brain, X } from "lucide-react";
 
 // Mock data for demonstration
 const DEMO_TRANSLATIONS = {
@@ -47,6 +50,10 @@ export default function TranslationWorkspace() {
   const [selectedText, setSelectedText] = useState("");
   const [translatedContent, setTranslatedContent] = useState("");
   const [showCitations, setShowCitations] = useState(false);
+  const [showVersionHistory, setShowVersionHistory] = useState(false);
+  const [showTranslationMemory, setShowTranslationMemory] = useState(false);
+  const [acceptedCitations, setAcceptedCitations] = useState<Citation[]>([]);
+  const [sourceText, setSourceText] = useState("");
   
   // Mock current user for collaboration
   const currentUser = {
@@ -108,6 +115,8 @@ export default function TranslationWorkspace() {
   };
 
   const handleCitationAccept = (citation: Citation) => {
+    // Add to accepted citations list
+    setAcceptedCitations(prev => [...prev, citation]);
     // Insert citation into the translated content
     const newContent = translatedContent + "\n\n" + citation.suggestedCitation;
     setTranslatedContent(newContent);
@@ -115,6 +124,20 @@ export default function TranslationWorkspace() {
 
   const handleCitationDismiss = (citationId: string) => {
     console.log("Citation dismissed:", citationId);
+  };
+
+  const handleVersionRestore = (content: string, versionId: number) => {
+    setTranslatedContent(content);
+    setShowVersionHistory(false);
+  };
+
+  const handleTranslationMemoryAccept = (targetText: string) => {
+    setTranslatedContent(targetText);
+    setShowTranslationMemory(false);
+  };
+
+  const handleTranslationMemoryDismiss = (suggestionId: number) => {
+    console.log("Translation memory suggestion dismissed:", suggestionId);
   };
 
   return (
@@ -138,21 +161,37 @@ export default function TranslationWorkspace() {
             </Badge>
           )}
         </div>
-        <div className="flex gap-2 w-full md:w-auto">
-           <Button variant="outline" size="sm" disabled={step !== "result"} className="flex-1 md:flex-none">
-             <FileText className="mr-2 h-4 w-4" />
-             PDF
-           </Button>
-           <Button size="sm" disabled={step !== "result"} className="flex-1 md:flex-none">
-             DOCX
-           </Button>
-           <Separator orientation="vertical" className="h-6 hidden md:block" />
-           <Button 
-             variant={isToolkitOpen ? "secondary" : "outline"} 
-             size="icon" 
-             onClick={() => setIsToolkitOpen(!isToolkitOpen)}
-             title="Toggle Jurist Toolkit"
+        <div className="flex gap-2 w-full md:w-auto flex-wrap">
+           <Button
+             variant="outline"
+             size="sm"
+             onClick={() => setShowVersionHistory(!showVersionHistory)}
+             disabled={step !== "result"}
+             className="flex-1 md:flex-none"
            >
+             <History className="mr-2 h-4 w-4" />
+             History
+           </Button>
+           <Button
+             variant="outline"
+             size="sm"
+             onClick={() => setShowTranslationMemory(!showTranslationMemory)}
+             disabled={step !== "result"}
+             className="flex-1 md:flex-none"
+           >
+             <Brain className="mr-2 h-4 w-4" />
+             Memory
+           </Button>
+           <DownloadPDFButton
+             title={targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.title : DEMO_TRANSLATIONS.marathi.title}
+             content={translatedContent || (targetLang === 'hindi' ? DEMO_TRANSLATIONS.hindi.content : DEMO_TRANSLATIONS.marathi.content)}
+             citations={acceptedCitations}
+             sourceLang="English"
+             targetLang={targetLang}
+             variant="outline"
+             size="sm"
+           />
+           <Button variant="ghost" size="icon" className="hidden md:flex" onClick={() => setIsToolkitOpen(!isToolkitOpen)}>
              {isToolkitOpen ? <PanelRightClose className="h-4 w-4" /> : <PanelRightOpen className="h-4 w-4" />}
            </Button>
         </div>
@@ -383,6 +422,45 @@ export default function TranslationWorkspace() {
         onClose={() => setIsToolkitOpen(false)}
         selectedText={selectedText}
       />
+
+      {/* Version History Panel */}
+      {showVersionHistory && (
+        <div className="fixed right-0 top-0 h-full w-96 bg-background border-l shadow-2xl z-50 overflow-hidden">
+          <div className="p-4 border-b flex justify-between items-center">
+            <h3 className="font-semibold">Version History</h3>
+            <Button variant="ghost" size="icon" onClick={() => setShowVersionHistory(false)}>
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="h-[calc(100%-4rem)]">
+            <VersionHistory
+              documentId="translation-doc-1"
+              onRestore={handleVersionRestore}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Translation Memory Panel */}
+      {showTranslationMemory && (
+        <div className="fixed right-0 top-0 h-full w-96 bg-background border-l shadow-2xl z-50 overflow-hidden">
+          <div className="p-4 border-b flex justify-between items-center">
+            <h3 className="font-semibold">Translation Memory</h3>
+            <Button variant="ghost" size="icon" onClick={() => setShowTranslationMemory(false)}>
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="h-[calc(100%-4rem)] overflow-y-auto">
+            <TranslationMemorySuggestions
+              sourceText={sourceText}
+              sourceLang="English"
+              targetLang={targetLang}
+              onAccept={handleTranslationMemoryAccept}
+              onDismiss={handleTranslationMemoryDismiss}
+            />
+          </div>
+        </div>
+      )}
     </div>
     </div>
   );

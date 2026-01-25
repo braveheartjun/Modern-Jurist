@@ -8,6 +8,20 @@
       "when": 1769340721408,
       "tag": "0000_absent_hawkeye",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1769341197541,
+      "tag": "0001_thin_network",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1769341326417,
+      "tag": "0002_noisy_talos",
+      "breakpoints": true
     }
   ]
 }

@@ -25,4 +25,40 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
+/**
+ * Document versions table for tracking edit history
+ */
+export const documentVersions = mysqlTable("document_versions", {
+  id: int("id").autoincrement().primaryKey(),
+  documentId: varchar("documentId", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  userId: int("userId").notNull(),
+  userName: varchar("userName", { length: 255 }).notNull(),
+  changeDescription: text("changeDescription"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type DocumentVersion = typeof documentVersions.$inferSelect;
+export type InsertDocumentVersion = typeof documentVersions.$inferInsert;
+
+/**
+ * Translation memory table for storing translation pairs
+ */
+export const translationMemory = mysqlTable("translation_memory", {
+  id: int("id").autoincrement().primaryKey(),
+  sourceText: text("sourceText").notNull(),
+  targetText: text("targetText").notNull(),
+  sourceLang: varchar("sourceLang", { length: 50 }).notNull(),
+  targetLang: varchar("targetLang", { length: 50 }).notNull(),
+  userId: int("userId").notNull(),
+  userName: varchar("userName", { length: 255 }).notNull(),
+  documentType: varchar("documentType", { length: 100 }),
+  usageCount: int("usageCount").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  lastUsedAt: timestamp("lastUsedAt").defaultNow().notNull(),
+});
+
+export type TranslationMemory = typeof translationMemory.$inferSelect;
+export type InsertTranslationMemory = typeof translationMemory.$inferInsert;
+
 // TODO: Add your tables here

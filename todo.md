@@ -15,3 +15,28 @@
 - [x] Create citation suggestion UI with accept/dismiss actions
 - [x] Link citations to full judgment in Reference Library
 - [x] Test citation detection with various case references
+
+## Version History Feature
+- [x] Create database schema for document_versions table
+- [x] Implement backend API to save document versions
+- [x] Implement backend API to fetch version history
+- [x] Implement backend API to rollback to a specific version
+- [x] Build Version History UI panel with timeline view
+- [x] Add diff preview to show changes between versions
+- [x] Integrate auto-save on edits in collaborative editor
+- [x] Test version tracking and rollback functionality
+
+## Download with Citations Feature
+- [x] Install PDF generation library
+- [x] Implement backend API to generate PDF with citations as footnotes
+- [x] Format citations properly in PDF output
+- [x] Add "Download with Citations" button to UI
+- [x] Test PDF generation with multiple citations
+
+## Translation Memory Feature
+- [x] Create database schema for translation_memory table
+- [x] Implement backend API to store translation pairs
+- [x] Implement backend API to search for similar phrases
+- [x] Build Translation Memory suggestion UI
+- [x] Add accept/dismiss actions for suggestions
+- [x] Test translation memory with various phrases
