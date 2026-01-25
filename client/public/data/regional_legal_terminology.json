@@ -1,0 +1,89 @@
+{
+    "gujarati": {
+        "document_types": [
+            "High Court Judgment",
+            "Special Civil Application"
+        ],
+        "common_terms": [
+            {
+                "term": "અરજદાર",
+                "meaning": "Petitioner",
+                "context": "Party filing the case"
+            },
+            {
+                "term": "પ્રતિવાદી",
+                "meaning": "Respondent",
+                "context": "Party opposing the case"
+            },
+            {
+                "term": "ચુકાદો",
+                "meaning": "Judgment",
+                "context": "Final decision of the court"
+            },
+            {
+                "term": "વચગાળાનો હુકમ",
+                "meaning": "Interim Order",
+                "context": "Temporary order during proceedings"
+            }
+        ],
+        "stylistic_elements": "Formal, respectful address to the court ('માનનીય કોર્ટ'). Use of passive voice for orders."
+    },
+    "marathi": {
+        "document_types": [
+            "High Court Judgment",
+            "Writ Petition"
+        ],
+        "common_terms": [
+            {
+                "term": "याचिकाकर्ता",
+                "meaning": "Petitioner",
+                "context": "Person filing the petition"
+            },
+            {
+                "term": "प्रतिवादी",
+                "meaning": "Respondent",
+                "context": "Opposing party"
+            },
+            {
+                "term": "निकाल",
+                "meaning": "Verdict/Judgment",
+                "context": "Final outcome"
+            },
+            {
+                "term": "आदेश",
+                "meaning": "Order",
+                "context": "Court's directive"
+            }
+        ],
+        "stylistic_elements": "Highly Sanskritized legal vocabulary. Sentences often end with the verb."
+    },
+    "kannada": {
+        "document_types": [
+            "Government Notification",
+            "Act"
+        ],
+        "common_terms": [
+            {
+                "term": "ಅರ್ಜಿದಾರರು",
+                "meaning": "Petitioner",
+                "context": "Applicant in court"
+            },
+            {
+                "term": "ಪ್ರತಿವಾದಿ",
+                "meaning": "Respondent",
+                "context": "Defendant"
+            },
+            {
+                "term": "ತೀರ್ಪು",
+                "meaning": "Judgment",
+                "context": "Court's decision"
+            },
+            {
+                "term": "ಆದೇಶ",
+                "meaning": "Order",
+                "context": "Official command"
+            }
+        ],
+        "stylistic_elements": "Formal administrative Kannada ('Aadalitha Kannada'). Precise and structured sentence formation."
+    }
+}

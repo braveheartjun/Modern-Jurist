@@ -47,7 +47,7 @@ export default function Dashboard() {
     value: (docs as any[]).length,
   }));
 
-  const COLORS = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)'];
+  const COLORS = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)'];
 
   return (
     <div className="space-y-8">
@@ -155,7 +155,7 @@ export default function Dashboard() {
                 />
               </PieChart>
             </ResponsiveContainer>
-            <div className="flex justify-center gap-6 mt-4">
+            <div className="flex justify-center gap-6 mt-4 flex-wrap">
               {langData.map((entry, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />

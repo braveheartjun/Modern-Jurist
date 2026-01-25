@@ -1,106 +1,121 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { Search, BookOpen } from "lucide-react";
+import { Search } from "lucide-react";
 
-interface GlossaryData {
-  english: Record<string, Record<string, string>>;
-  hindi: Record<string, Record<string, string>>;
+interface Terminology {
+  [category: string]: { [term: string]: number } | string[];
+}
+
+interface Database {
+  terminology_index: {
+    english: Terminology;
+    hindi: Terminology;
+    gujarati: Terminology;
+    marathi: Terminology;
+    kannada: Terminology;
+  };
 }
 
 export default function Glossary() {
-  const [glossary, setGlossary] = useState<GlossaryData | null>(null);
+  const [data, setData] = useState<Database | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetch("/data/glossary.json")
+    fetch("/data/database.json")
       .then((res) => res.json())
       .then((data) => {
-        setGlossary(data);
+        setData(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to load glossary", err);
+        console.error("Failed to load data", err);
         setLoading(false);
       });
   }, []);
 
   if (loading) return <div className="flex justify-center p-10">Loading glossary...</div>;
-  if (!glossary) return <div>Failed to load glossary</div>;
+  if (!data) return <div>Error loading data</div>;
 
-  const renderTerms = (terms: Record<string, string>) => {
-    const filteredTerms = Object.entries(terms).filter(([term, def]) => 
-      term.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      def.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    if (filteredTerms.length === 0) return null;
-
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filteredTerms.map(([term, def]) => (
-          <Card key={term} className="hover:bg-secondary/20 transition-colors">
-            <CardContent className="p-4">
-              <h3 className="font-serif font-bold text-lg text-primary mb-1">{term}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{def}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    );
-  };
-
-  const renderCategory = (categoryName: string, terms: Record<string, string>) => {
-    const content = renderTerms(terms);
-    if (!content) return null;
-    
-    return (
-      <div key={categoryName} className="mb-8">
-        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 capitalize">
-          <div className="w-1.5 h-6 bg-accent rounded-full" />
-          {categoryName.replace(/_/g, ' ')}
-        </h2>
-        {content}
-      </div>
-    );
-  };
+  const categories = ["court_related", "legal_concepts", "parties"];
+  const languages = ["english", "hindi", "gujarati", "marathi", "kannada"];
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-serif font-bold text-primary mb-2">Terminology Glossary</h1>
-        <p className="text-muted-foreground">Comprehensive definitions of legal terms in English and Hindi.</p>
+        <h1 className="text-3xl font-serif font-bold text-primary mb-2">Legal Terminology Glossary</h1>
+        <p className="text-muted-foreground">Comparative index of legal terms across five languages.</p>
       </div>
 
       <div className="relative max-w-md">
         <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input 
-          placeholder="Search terms or definitions..." 
-          className="pl-9"
+          placeholder="Search terms..." 
+          className="pl-9 bg-background"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 
-      <Tabs defaultValue="english" className="w-full">
-        <TabsList className="mb-6">
-          <TabsTrigger value="english" className="px-8">English Terms</TabsTrigger>
-          <TabsTrigger value="hindi" className="px-8">Hindi Terms</TabsTrigger>
+      <Tabs defaultValue="court_related" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="court_related">Court & Procedure</TabsTrigger>
+          <TabsTrigger value="legal_concepts">Legal Concepts</TabsTrigger>
+          <TabsTrigger value="parties">Parties & Roles</TabsTrigger>
         </TabsList>
-
-        <TabsContent value="english" className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
-          {Object.entries(glossary.english).map(([category, terms]) => 
-            renderCategory(category, terms)
-          )}
-        </TabsContent>
-
-        <TabsContent value="hindi" className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
-          {Object.entries(glossary.hindi).map(([category, terms]) => 
-            renderCategory(category, terms)
-          )}
-        </TabsContent>
+        
+        {categories.map((category) => (
+          <TabsContent key={category} value={category}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="capitalize">{category.replace("_", " ")} Terms</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      {languages.map(lang => (
+                        <TableHead key={lang} className="capitalize font-bold text-primary">
+                          {lang}
+                        </TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {/* 
+                      Note: This is a simplified view. In a real app, we would align terms by meaning.
+                      Here we list the top terms extracted for each language in this category.
+                    */}
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <TableRow key={i}>
+                        {languages.map(lang => {
+                          // @ts-ignore
+                          const terms = data.terminology_index[lang]?.[category];
+                          let term = "-";
+                          
+                          if (Array.isArray(terms)) {
+                            term = terms[i] || "-";
+                          } else if (terms && typeof terms === 'object') {
+                            term = Object.keys(terms)[i] || "-";
+                          }
+                          
+                          return (
+                            <TableCell key={lang} className="font-medium">
+                              {term}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );

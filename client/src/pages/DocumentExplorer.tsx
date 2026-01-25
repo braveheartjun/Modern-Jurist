@@ -126,7 +126,13 @@ export default function DocumentExplorer() {
                 <Badge variant="outline" className="bg-secondary text-secondary-foreground border-none">
                   {doc.type}
                 </Badge>
-                <Badge variant="secondary" className={doc.language === 'english' ? "bg-blue-100 text-blue-800" : "bg-orange-100 text-orange-800"}>
+                <Badge variant="secondary" className={
+                  doc.language === 'english' ? "bg-blue-100 text-blue-800" : 
+                  doc.language === 'hindi' ? "bg-orange-100 text-orange-800" :
+                  doc.language === 'gujarati' ? "bg-green-100 text-green-800" :
+                  doc.language === 'marathi' ? "bg-purple-100 text-purple-800" :
+                  "bg-yellow-100 text-yellow-800"
+                }>
                   {doc.language.charAt(0).toUpperCase() + doc.language.slice(1)}
                 </Badge>
               </div>

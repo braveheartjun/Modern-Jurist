@@ -1,14 +1,19 @@
 {
   "metadata": {
-    "created": "2026-01-24T15:37:39.166415",
-    "total_documents": 10,
+    "created": "2026-01-25T12:00:00.000000",
+    "total_documents": 15,
     "languages": [
       "English",
-      "Hindi"
+      "Hindi",
+      "Gujarati",
+      "Marathi",
+      "Kannada"
     ],
     "document_types": [
       "Act",
-      "Contract"
+      "Contract",
+      "Judgment",
+      "Power of Attorney"
     ]
   },
   "by_type": {
@@ -103,6 +108,60 @@
           "has_bilingual": true
         }
       ]
+    },
+    "Judgment": {
+      "gujarati": [
+        {
+          "title": "Gujarat High Court Judgment Sample",
+          "type": "Judgment",
+          "source": "Gujarat High Court",
+          "language": "gujarati",
+          "file": "gujarat_high_court_judgment_sample.pdf",
+          "has_bilingual": false
+        }
+      ],
+      "marathi": [
+        {
+          "title": "Bombay High Court Judgment Sample",
+          "type": "Judgment",
+          "source": "Bombay High Court",
+          "language": "marathi",
+          "file": "bombay_high_court_judgment_sample.pdf",
+          "has_bilingual": false
+        }
+      ]
+    },
+    "Power of Attorney": {
+      "english": [
+        {
+          "title": "General Power of Attorney (Original)",
+          "type": "Power of Attorney",
+          "source": "User Upload",
+          "language": "english",
+          "file": "POA-InfavourofDevSharma-21-01-2026.docx",
+          "has_bilingual": true
+        }
+      ],
+      "hindi": [
+        {
+          "title": "Mukhtarnama Aam (Translated)",
+          "type": "Power of Attorney",
+          "source": "Translation Model",
+          "language": "hindi",
+          "file": "POA_Hindi_Translation.md",
+          "has_bilingual": true
+        }
+      ],
+      "marathi": [
+        {
+          "title": "Kulmukhtyarpatra (Translated)",
+          "type": "Power of Attorney",
+          "source": "Translation Model",
+          "language": "marathi",
+          "file": "POA_Marathi_Translation.md",
+          "has_bilingual": true
+        }
+      ]
     }
   },
   "by_language": {
@@ -146,6 +205,14 @@
         "language": "english",
         "file": "Sample_Contract_Agreement_4.json",
         "has_bilingual": true
+      },
+      {
+        "title": "General Power of Attorney (Original)",
+        "type": "Power of Attorney",
+        "source": "User Upload",
+        "language": "english",
+        "file": "POA-InfavourofDevSharma-21-01-2026.docx",
+        "has_bilingual": true
       }
     ],
     "hindi": [
@@ -188,40 +255,136 @@
         "language": "hindi",
         "file": "Sample_Contract_Agreement_4.json",
         "has_bilingual": true
+      },
+      {
+        "title": "Mukhtarnama Aam (Translated)",
+        "type": "Power of Attorney",
+        "source": "Translation Model",
+        "language": "hindi",
+        "file": "POA_Hindi_Translation.md",
+        "has_bilingual": true
+      }
+    ],
+    "gujarati": [
+      {
+        "title": "Gujarat High Court Judgment Sample",
+        "type": "Judgment",
+        "source": "Gujarat High Court",
+        "language": "gujarati",
+        "file": "gujarat_high_court_judgment_sample.pdf",
+        "has_bilingual": false
+      }
+    ],
+    "marathi": [
+      {
+        "title": "Bombay High Court Judgment Sample",
+        "type": "Judgment",
+        "source": "Bombay High Court",
+        "language": "marathi",
+        "file": "bombay_high_court_judgment_sample.pdf",
+        "has_bilingual": false
+      },
+      {
+        "title": "Kulmukhtyarpatra (Translated)",
+        "type": "Power of Attorney",
+        "source": "Translation Model",
+        "language": "marathi",
+        "file": "POA_Marathi_Translation.md",
+        "has_bilingual": true
+      }
+    ],
+    "kannada": [
+      {
+        "title": "Kannada Language Learning Act",
+        "type": "Act",
+        "source": "Karnataka Govt",
+        "language": "kannada",
+        "file": "kannada_act_sample.pdf",
+        "has_bilingual": false
       }
     ]
   },
   "terminology_index": {
     "english": {
       "court_related": {
-        "court": 3
+        "court": 3,
+        "judgment": 2,
+        "petitioner": 2
       },
       "temporal": {
-        "Whereas": 2
+        "Whereas": 2,
+        "dated": 1
       },
       "legal_concepts": {
         "jurisdiction": 1,
-        "Agreement": 1
+        "Agreement": 1,
+        "Power of Attorney": 1,
+        "Intestate": 1
       },
       "parties": {
-        "Party": 3
+        "Party": 3,
+        "Executant": 1,
+        "Attorney": 1
       }
     },
     "hindi": {
       "court_related": [
         "न्यायालय",
         "न्याय",
-        "न्यायालय",
-        "न्याय",
-        "न्यायालय",
-        "न्याय"
+        "याचिकाकर्ता"
       ],
       "legal_concepts": [
         "क्षेत्राधिकार",
-        "समझौता"
+        "समझौता",
+        "मुख्तारनामा",
+        "बिना वसीयत"
       ],
       "parties": [
-        "पक्ष"
+        "पक्ष",
+        "कार्यकारी",
+        "मुख्तार"
+      ]
+    },
+    "gujarati": {
+      "court_related": [
+        "નામદાર કોર્ટ",
+        "ચુકાદો"
+      ],
+      "legal_concepts": [
+        "કાયદો",
+        "અરજી"
+      ],
+      "parties": [
+        "અરજદાર",
+        "સામાવાળા"
+      ]
+    },
+    "marathi": {
+      "court_related": [
+        "न्यायालय",
+        "निकाल"
+      ],
+      "legal_concepts": [
+        "कुलमुखत्यारपत्र",
+        "हक्कसोड पत्र"
+      ],
+      "parties": [
+        "लिहून देणार",
+        "लिहून घेणार"
+      ]
+    },
+    "kannada": {
+      "court_related": [
+        "ನ್ಯಾಯಾಲಯ",
+        "ತೀರ್ಪು"
+      ],
+      "legal_concepts": [
+        "ಕಾಯಿದೆ",
+        "ನಿಯಮಗಳು"
+      ],
+      "parties": [
+        "ಅರ್ಜಿದಾರರು",
+        "ಪ್ರತಿವಾದಿಗಳು"
       ]
     }
   }
