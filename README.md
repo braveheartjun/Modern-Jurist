@@ -26,7 +26,7 @@ This is meant to feel like a document drafted natively in the target language, n
 
 ## Why this exists
 
-India has a real legal translation gap.
+The global legal system has a translation problem, and India experiences it more than most. Modern Jurist is built keeping one simple thought in mind: “Starting in India, thinking global, building for the world.” 
 
 Lawyers, businesses, and courts often deal with documents written in unfamiliar regional or foreign languages. Existing tools are fine for casual understanding, but they fail when:
 - Legal context matters
