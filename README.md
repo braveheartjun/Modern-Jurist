@@ -1,6 +1,6 @@
-# Indian Legal Document Translation Engine - Modern Jurist (Demo)
+# Legal Document Translation Engine - Modern Jurist (Demo)
 
-This project is a proof-of-concept legal document translation tool designed for the Indian legal ecosystem.
+This project is a proof-of-concept legal document translation tool designed for the Indian legal ecosystem. (for now)
 
 Unlike generic translators, this system focuses on **legal intent, drafting conventions, and document structure**, not word-for-word translation. The goal is to make legal documents readable, reviewable, and usable across languages, especially in commercial and litigation contexts.
 
