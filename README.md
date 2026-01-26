@@ -112,4 +112,4 @@ and have thoughts, feedback, or critiques, feel free to open an issue or start a
 
 ## License
 
-To be added.
+This project is licensed under the MIT License.
