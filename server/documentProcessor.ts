@@ -5,14 +5,24 @@ import mammoth from "mammoth";
  */
 export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
   try {
-    // Dynamic import for pdf-parse to handle ESM/CJS compatibility
-    const pdfParseModule = await import("pdf-parse");
-    const pdfParse = (pdfParseModule as any).default || pdfParseModule;
-    const data = await pdfParse(buffer);
-    return data.text;
+    // Use pdfjs-dist legacy build for Node.js
+    const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+    // Convert Buffer to Uint8Array
+    const uint8Array = new Uint8Array(buffer);
+    const pdf = pdfjs.getDocument(uint8Array);
+    const document = await pdf.promise;
+    
+    let text = "";
+    for (let i = 1; i <= document.numPages; i++) {
+      const page = await document.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map((item: any) => item.str).join(" ") + "\n";
+    }
+    
+    return text || "";
   } catch (error) {
     console.error("[Document Processor] PDF extraction error:", error);
-    throw new Error("Failed to extract text from PDF");
+    throw new Error("Failed to extract text from PDF: " + (error instanceof Error ? error.message : String(error)));
   }
 }
 
